@@ -15,11 +15,13 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   max-width: 100%;
+  background-color: rgb(40, 47, 51);
+
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 html {
-  background-color: rgba(250, 250, 250);
+  background-color: rgb(27, 29, 30);
   max-width: 100%;
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }

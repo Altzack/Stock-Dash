@@ -16,26 +16,25 @@ const AppHeaderContainer = styled.div`
   width: 100vw;
   font-family: Rubik;
   z-index: 99;
-  /*background-color: #ff294a;*/
-  background-color: white;
+  background-color: rgb(27, 28, 29);
 `;
 
 const FooterSeparator = styled.span`
   padding: 0 10px;
   margin-top: 2px;
-  color: #364966;
+  color: #e8e6e3;
 `;
 
 const HeaderSection = styled.div`
   display: flex;
   align-items: center;
   width: 33%;
-  color: #364966;
+  color: #e8e6e3;
 `;
 
 const HeaderContentContainer = styled.div`
   font-family: Rubik;
-  font-weight: 500;
+  font-weight: 300;
   max-width: 1200px;
   display: flex;
   margin: 0 auto;
@@ -45,7 +44,7 @@ const HeaderContentContainer = styled.div`
 `;
 
 const StyledHeader = styled.h3`
-  color: #364966;
+  color: #e8e6e3;
   margin-bottom: 0;
   :hover {
     color: #1890ff;
@@ -53,7 +52,7 @@ const StyledHeader = styled.h3`
 `;
 
 const StyledTitle = styled.h1`
-  color: #364966;
+  color: #e8e6e3;
   margin-bottom: 0;
   font-family: Rubik;
   @media (min-width: 300px) {
@@ -62,14 +61,13 @@ const StyledTitle = styled.h1`
   }
   @media (min-width: 650px) {
     font-size: 25px;
-    letter-spacing: 3px;
   }
 `;
 
 const LogoLink = styled(Link)`
   justify-self: center;
   align-self: center;
-  color: #364966;
+  color: #e8e6e3;
   font-size: 15px;
 `;
 
@@ -113,7 +111,7 @@ export default function Header() {
               style={{
                 borderColor: 'transparent',
                 backgroundColor: 'transparent',
-                color: '#364966',
+                color: '#e8e6e3',
               }}
               ype="text"
               onClick={showDrawer}

@@ -4,7 +4,7 @@ import NewsList from '../NewsList/NewsList';
 
 export default function LandingPage() {
   return (
-    <div style={{ color: '#000' }}>
+    <div style={{ color: '#000', backgroundColor: 'rgb(27, 29, 30)' }}>
       <NewsList />
     </div>
   );
