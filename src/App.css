@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+.fa {
+  color: #fff;
+}
+
 body {
   margin: 0;
   padding: 0;
