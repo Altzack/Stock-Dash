@@ -55,8 +55,15 @@ const StyledHeader = styled.h3`
 const StyledTitle = styled.h1`
   color: #364966;
   margin-bottom: 0;
-  letter-spacing: 3px;
   font-family: Rubik;
+  @media (min-width: 300px) {
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+  @media (min-width: 650px) {
+    font-size: 25px;
+    letter-spacing: 3px;
+  }
 `;
 
 const LogoLink = styled(Link)`
@@ -81,21 +88,21 @@ export default function Header() {
       <DesktopOnly>
         <HeaderContentContainer>
           <HeaderSection style={{ justifyContent: 'flex-start' }}>
-            <Link style={{ textDecoration: 'none', color: '#000' }} to="/">
+            <Link style={{ textDecoration: 'none', color: '#000' }} to="/about">
               <StyledHeader>About</StyledHeader>
             </Link>
             <FooterSeparator>|</FooterSeparator>
-            <Link style={{ textDecoration: 'none', color: '#000' }} to="/">
-              <StyledHeader>Foo</StyledHeader>
+            <Link style={{ textDecoration: 'none', color: '#000' }} to="/news">
+              <StyledHeader>News</StyledHeader>
             </Link>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'center' }}>
             <LogoLink to="/">
-              <StyledTitle>Untitled</StyledTitle>
+              <StyledTitle>Stock Dash</StyledTitle>
             </LogoLink>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'flex-end' }}>
-            hi
+            <img style={{ width: '100' }} alt="logo" src="/favicon-32x32.png" />
           </HeaderSection>
         </HeaderContentContainer>
       </DesktopOnly>
@@ -116,11 +123,11 @@ export default function Header() {
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'center' }}>
             <LogoLink to="/">
-              <StyledTitle>Untitled</StyledTitle>
+              <StyledTitle>Stock Dash</StyledTitle>
             </LogoLink>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'flex-end' }}>
-            hi
+            <img style={{ width: '100' }} alt="logo" src="/favicon-32x32.png" />
           </HeaderSection>
         </HeaderContentContainer>
         <Drawer
@@ -133,16 +140,16 @@ export default function Header() {
           <Link
             onClick={onClose}
             style={{ textDecoration: 'none', color: '#000' }}
-            to="/"
+            to="/about"
           >
             <h3>About</h3>
           </Link>
           <Link
             onClick={onClose}
             style={{ textDecoration: 'none', color: '#000' }}
-            to="/"
+            to="/news"
           >
-            <h3>Blah</h3>
+            <h3>News</h3>
           </Link>
         </Drawer>
       </MobileOnly>

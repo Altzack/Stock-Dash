@@ -32,7 +32,7 @@ export default function Footer() {
     <FooterContainer>
       <FooterContentContainer mobile={isTabletOrMobile}>
         <div>
-          Boozy
+          Stock Dash
           <FooterSeparator>|</FooterSeparator>
           Created by <i>Zack 2020</i>
         </div>
