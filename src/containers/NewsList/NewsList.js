@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import AppContext from '../../AppContext';
@@ -18,13 +18,13 @@ const NewsContainer = styled.article`
     background-color: rgb(40, 47, 51);
   }
   @media (min-width: 300px) {
-    width: 300px;
+    width: 320px;
   }
   @media (min-width: 600px) {
     width: 500px;
   }
   @media (min-width: 900px) {
-    width: 700px;
+    width: 800px;
   }
 `;
 
@@ -136,21 +136,28 @@ export default class NewsList extends React.Component {
     const list = this.context.news.map((newsObj) => {
       return (
         <a href={newsObj.url}>
-          <NewsContainer className="drink" id={newsObj.source.id}>
+          <NewsContainer className="drink" key={newsObj.source.id}>
             <Title>
-              <SubTitle>{newsObj.author}</SubTitle>
+              <SubTitle>{newsObj.source.name}</SubTitle>
               {newsObj.title}
               <Modified>
                 {moment(newsObj.publishedAt).format('MMM Do YY')}
               </Modified>
             </Title>
-            <div>
-              <NewsImg alt="cover" src={newsObj.urlToImage} />
-            </div>
+            {newsObj.urlToImage ? (
+              <div>
+                <NewsImg alt="cover" src={newsObj.urlToImage} />
+              </div>
+            ) : (
+              <div>
+                <NewsImg alt="cover" src="/placeholderchart-min.jpg" />
+              </div>
+            )}
           </NewsContainer>
         </a>
       );
     });
+
     return (
       <PageContainer className="newslist">
         <NewsTitle>News</NewsTitle>

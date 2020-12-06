@@ -1,11 +1,18 @@
 import styled from 'styled-components/macro';
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Drawer, Button } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { Drawer, Button, Dropdown, Input, AutoComplete } from 'antd';
 import { DesktopOnly, MobileOnly } from './responsiveComponents';
+import { MenuOutlined, SearchOutlined, AudioOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../../App.css';
+import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai';
+import { GoPlus } from 'react-icons/go';
+import config from '../../config';
+import AppContext from '../../AppContext';
+import NewsList from '../NewsList/NewsList';
+import symbols from './symbols';
+import App from '../../App';
 
 const AppHeaderContainer = styled.div`
   padding: 8px 12px;
@@ -17,6 +24,26 @@ const AppHeaderContainer = styled.div`
   font-family: Rubik;
   z-index: 99;
   background-color: rgb(27, 28, 29);
+`;
+
+const StyledButton = styled.button`
+  color: #fff;
+  font-weight: 500;
+  height: 33px;
+  line-height: 33px;
+  background-color: #1c89ff;
+  width: 50px;
+  margin-left: 10px;
+  transition: all 0.1s ease-in-out;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.21);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  :hover {
+    transition: all 0.1s ease-in-out;
+    background-color: #3e9afc;
+    cursor: pointer;
+  }
 `;
 
 const FooterSeparator = styled.span`
@@ -72,7 +99,10 @@ const LogoLink = styled(Link)`
 `;
 
 export default function Header() {
+  const context = useContext(AppContext);
   const [visible, setVisible] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [searchNews, setSearchNews] = useState([]);
 
   const showDrawer = () => {
     setVisible(true);
@@ -81,6 +111,23 @@ export default function Header() {
   const onClose = () => {
     setVisible(false);
   };
+
+  const handleSearch = (searchText) => {
+    const filteredTickers = symbols.filter(
+      (symbol) =>
+        symbol.symbol.toLowerCase().includes(searchText.toLowerCase()) ||
+        symbol['Security Name'].toLowerCase().includes(searchText.toLowerCase()) // TODO: Update this so it's smarter or something
+    );
+
+    setOptions(
+      filteredTickers.map((ticker) => {
+        return {
+          value: ticker.symbol + '---' + ticker['Security Name'],
+        };
+      })
+    );
+  };
+
   return (
     <AppHeaderContainer>
       <DesktopOnly>
@@ -89,18 +136,27 @@ export default function Header() {
             <Link style={{ textDecoration: 'none', color: '#000' }} to="/about">
               <StyledHeader>About</StyledHeader>
             </Link>
-            <FooterSeparator>|</FooterSeparator>
-            <Link style={{ textDecoration: 'none', color: '#000' }} to="/news">
-              <StyledHeader>News</StyledHeader>
-            </Link>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'center' }}>
             <LogoLink to="/">
-              <StyledTitle>Stock Dash</StyledTitle>
+              <img alt="logo" src="/favicon-32x32.png" />
             </LogoLink>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'flex-end' }}>
-            <img style={{ width: '100' }} alt="logo" src="/favicon-32x32.png" />
+            <AutoComplete
+              options={options}
+              style={{
+                width: 200,
+              }}
+              dropdownMatchSelectWidth={300}
+              onSelect={context.handleSelect}
+              onSearch={handleSearch}
+              placeholder="AAPL, TSLA, FSLY..."
+              allowClear
+            />
+            <StyledButton>
+              <GoPlus />
+            </StyledButton>
           </HeaderSection>
         </HeaderContentContainer>
       </DesktopOnly>
@@ -121,11 +177,14 @@ export default function Header() {
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'center' }}>
             <LogoLink to="/">
-              <StyledTitle>Stock Dash</StyledTitle>
+              <img alt="logo" src="/favicon-32x32.png" />
             </LogoLink>
           </HeaderSection>
-          <HeaderSection style={{ justifyContent: 'flex-end' }}>
-            <img style={{ width: '100' }} alt="logo" src="/favicon-32x32.png" />
+          <HeaderSection
+            className="searchContainer"
+            style={{ justifyContent: 'flex-end' }}
+          >
+            <AiOutlineSearch />
           </HeaderSection>
         </HeaderContentContainer>
         <Drawer
@@ -141,13 +200,6 @@ export default function Header() {
             to="/about"
           >
             <h3>About</h3>
-          </Link>
-          <Link
-            onClick={onClose}
-            style={{ textDecoration: 'none', color: '#000' }}
-            to="/news"
-          >
-            <h3>News</h3>
           </Link>
         </Drawer>
       </MobileOnly>

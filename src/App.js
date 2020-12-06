@@ -15,7 +15,6 @@ import Header from './containers/common/Header';
 import AppContext from './AppContext';
 import LandingPage from './containers/LandingPage/LandingPage';
 import config from './config';
-import News from './containers/News/News';
 import About from './containers/About/About';
 
 const AppContainer = styled.div`
@@ -48,7 +47,12 @@ const AppWrapper = withRouter(({ children }) => {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { news: [], loading: true, data: [], watchList: [] };
+    this.state = {
+      news: [],
+      loading: true,
+      data: [],
+      watchList: [],
+    };
   }
 
   setNews = (news) => {
@@ -59,9 +63,28 @@ class App extends Component {
     });
   };
 
+  handleSelect = (selectedTicker) => {
+    fetch(
+      `${config.NEWS_API_ENDPOINT}/everything?q=${selectedTicker}&language=en&pageSize=30&apiKey=${config.NEWS_API_KEY}`,
+      {
+        method: 'GET',
+        headers: {},
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(this.setNews)
+
+      .catch((error) => this.setState({ error }));
+  };
+
   getNews = () => {
     fetch(
-      `${config.NEWS_API_ENDPOINT}/everything?qInTitle=stock-market&sortBy=publishedAt&pageSize=50&apiKey=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/top-headlines?sources=the-wall-street-journal,reuters,bloomberg,barrons&pageSize=50&apiKey=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
@@ -76,32 +99,27 @@ class App extends Component {
       .then(this.setNews)
       .catch((error) => this.setState({ error }));
   };
-
   componentDidMount() {
     this.getNews();
   }
-
   render() {
-    console.log(this.state.news);
-
     const contextValues = {
       loading: this.state.loading,
-      news: this.state.news || [],
+      news: this.state.news,
       data: this.state.data || [],
       getNews: this.getNews,
+      setNews: this.setNews,
+      handleSelect: this.handleSelect,
     };
     return (
       <AppContext.Provider value={contextValues}>
         <>
           <Router>
             <QueryParamProvider ReactRouterRoute={Route}>
-              <AppWrapper>
+              <AppWrapper tickers={this.state.tickers}>
                 <Switch>
                   <Route exact path="/">
                     <LandingPage />
-                  </Route>
-                  <Route exact path="/news">
-                    <News />
                   </Route>
                   <Route exact path="/about">
                     <About />

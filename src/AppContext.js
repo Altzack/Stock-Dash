@@ -5,6 +5,8 @@ const AppContext = React.createContext({
   getNews: () => {},
   data: [],
   loading: true,
+  setNews: () => {},
+  handleSelect: () => {},
 });
 
 export default AppContext;

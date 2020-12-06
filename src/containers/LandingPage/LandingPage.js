@@ -1,9 +1,21 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import NewsList from '../NewsList/NewsList';
+import Graph from '../Graph/Graph';
+import WatchList from '../WatchList/WatchList';
 
 export default function LandingPage() {
   return (
-    <div style={{ color: '#000', backgroundColor: 'rgb(27, 29, 30)' }}></div>
+    <div style={{ color: '#000', backgroundColor: 'rgb(27, 29, 30)' }}>
+      <div>
+        <Graph />
+      </div>
+      <div>
+        <WatchList />
+      </div>
+      <div>
+        <NewsList />
+      </div>
+    </div>
   );
 }
