@@ -31,7 +31,7 @@ const StyledButton = styled.button`
   font-weight: 500;
   height: 33px;
   line-height: 33px;
-  background-color: #1c89ff;
+  background-color: rgb(40, 199, 145);
   width: 50px;
   margin-left: 10px;
   transition: all 0.1s ease-in-out;
@@ -122,7 +122,7 @@ export default function Header() {
     setOptions(
       filteredTickers.map((ticker) => {
         return {
-          value: ticker.symbol + '---' + ticker['Security Name'],
+          value: ticker.symbol + ' | ' + ticker['Security Name'],
         };
       })
     );

@@ -5,6 +5,7 @@ import AppContext from '../../AppContext';
 import Loader from '../common/Loader/Loader';
 import '../../App.css';
 import moment from 'moment';
+import { message } from 'antd';
 
 const NewsContainer = styled.article`
   align-items: center;
@@ -44,7 +45,7 @@ const NewsTitle = styled.div`
   color: #e8e6e3;
 
   @media (min-width: 300px) {
-    width: 300px;
+    width: 320px;
     font-size: 20px;
   }
   @media (min-width: 600px) {
@@ -53,7 +54,7 @@ const NewsTitle = styled.div`
   }
   @media (min-width: 900px) {
     font-size: 27px;
-    width: 700px;
+    width: 800px;
   }
 `;
 
@@ -125,6 +126,13 @@ const Modified = styled.div`
 export default class NewsList extends React.Component {
   static contextType = AppContext;
 
+  noNewsFound = () => {
+    message.error(`No news found for selected symbol`);
+    this.context.getNews();
+  };
+
+
+
   render() {
     if (this.context.loading === true)
       return (
@@ -133,30 +141,33 @@ export default class NewsList extends React.Component {
         </div>
       );
 
-    const list = this.context.news.map((newsObj) => {
-      return (
-        <a href={newsObj.url}>
-          <NewsContainer className="drink" key={newsObj.source.id}>
-            <Title>
-              <SubTitle>{newsObj.source.name}</SubTitle>
-              {newsObj.title}
-              <Modified>
-                {moment(newsObj.publishedAt).format('MMM Do YY')}
-              </Modified>
-            </Title>
-            {newsObj.urlToImage ? (
-              <div>
-                <NewsImg alt="cover" src={newsObj.urlToImage} />
-              </div>
-            ) : (
-              <div>
-                <NewsImg alt="cover" src="/placeholderchart-min.jpg" />
-              </div>
-            )}
-          </NewsContainer>
-        </a>
-      );
-    });
+    const list =
+      this.context.news.length !== 0
+        ? this.context.news.map((newsObj) => {
+            return (
+              <a href={newsObj.url} target="_blank" rel="noopener noreferrer">
+                <NewsContainer className="drink" key={newsObj.source.id}>
+                  <Title>
+                    <SubTitle>{newsObj.source.name}</SubTitle>
+                    {newsObj.title}
+                    <Modified>
+                      {moment(newsObj.publishedAt).format('MMM Do YY')}
+                    </Modified>
+                  </Title>
+                  {newsObj.urlToImage ? (
+                    <div>
+                      <NewsImg alt="cover" src={newsObj.urlToImage} />
+                    </div>
+                  ) : (
+                    <div>
+                      <NewsImg alt="cover" src="/placeholderchart-min.jpg" />
+                    </div>
+                  )}
+                </NewsContainer>
+              </a>
+            );
+          })
+        : ''
 
     return (
       <PageContainer className="newslist">

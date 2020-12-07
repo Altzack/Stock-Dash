@@ -8,7 +8,8 @@ const WatchListDiv = styled.div`
   padding: 24px;
   position: fixed;
   margin-bottom: 30px;
-  background-color: #666;
+  border: 1px solid #fff;
+  background-color: rgb(27, 29, 30);
   scrollbar-width: none;
   top: 95px;
   display: block;
@@ -23,13 +24,13 @@ const WatchListDiv = styled.div`
     height: calc(100% - 100px);
   }
   @media (min-width: 900px) {
-    width: 700px;
+    width: 800px;
     height: calc(100% - 100px);
   }
   @media (min-width: 1025px) {
     width: 323px;
     position: fixed;
-    margin-left: 40px;
+    margin-left: 90px;
     height: calc(100% - 200px);
   }
 `;
@@ -47,7 +48,7 @@ const StyledButton = styled.button`
   color: #fff;
   font-weight: 500;
   height: 34px;
-  background-color: #1c89ff;
+  background-color: rgb(40, 199, 145);
   width: 50px;
   transition: all 0.1s ease-in-out;
   border: 1px solid rgba(0, 0, 0, 0.21);
@@ -86,6 +87,8 @@ export default function WatchList() {
             display: 'flex',
             justifyContent: 'space-between',
             height: 60,
+            borderBottom: '1px solid #fff',
+            marginBottom: 10,
           }}
         >
           <StyledTitle>Watch List</StyledTitle>

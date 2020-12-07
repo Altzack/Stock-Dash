@@ -64,8 +64,9 @@ class App extends Component {
   };
 
   handleSelect = (selectedTicker) => {
+    const filteredTicker = selectedTicker.replace('|', '');
     fetch(
-      `${config.NEWS_API_ENDPOINT}/everything?q=${selectedTicker}&language=en&pageSize=30&apiKey=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/everything?q=${filteredTicker}&language=en&sortBy=relevancy&pageSize=30&apiKey=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
@@ -78,6 +79,8 @@ class App extends Component {
         return res.json();
       })
       .then(this.setNews)
+      .then(console.log(selectedTicker))
+      .then(console.log(filteredTicker))
 
       .catch((error) => this.setState({ error }));
   };
