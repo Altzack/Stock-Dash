@@ -10,7 +10,7 @@ const FooterSeparator = styled.span`
 const FooterContainer = styled.div`
   width: 100%;
   color: #e8e6e3;
-  background-color: rgb(40, 47, 51);
+  background-color: rgb(40, 199, 145);
   margin-top: 48px;
 `;
 
@@ -40,13 +40,16 @@ export default function Footer() {
           <br />
         </MobileOnly>
         <div>
-          <a href="https://github.com/Altzack">
+          <a style={{ color: '#fff' }} href="https://github.com/Altzack">
             <FaGithub size="25px" style={{ marginRight: 15 }} />
           </a>
-          <a href="https://www.linkedin.com/in/zack-altschuler">
+          <a
+            style={{ color: '#fff' }}
+            href="https://www.linkedin.com/in/zack-altschuler"
+          >
             <FaLinkedin size="25px" style={{ marginRight: 15 }} />
           </a>
-          <a href="mailto:altschulerzack@yahoo.com">
+          <a style={{ color: '#fff' }} href="mailto:altschulerzack@yahoo.com">
             <FaTelegramPlane size="25px" style={{ marginRight: 15 }} />
           </a>
         </div>

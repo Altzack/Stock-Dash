@@ -16,6 +16,7 @@ import AppContext from './AppContext';
 import LandingPage from './containers/LandingPage/LandingPage';
 import config from './config';
 import About from './containers/About/About';
+import { message } from 'antd';
 
 const AppContainer = styled.div`
   display: flex;
@@ -63,6 +64,27 @@ class App extends Component {
     });
   };
 
+  setWatchlist = (watchList) => {
+    this.setState({
+      watchList,
+      error: null,
+      loading: false,
+    });
+  };
+
+  addSymbol = (symbol) => {
+    this.setState({
+      watchList: [...this.state.watchList, symbol],
+    });
+  };
+
+  deleteSymbol = (id) => {
+    let newSymbols = this.state.watchList.filter((d) => d.id !== id);
+    this.setState({
+      watchList: newSymbols,
+    });
+  };
+
   handleSelect = (selectedTicker) => {
     const filteredTicker = selectedTicker.replace('|', '');
     fetch(
@@ -81,13 +103,14 @@ class App extends Component {
       .then(this.setNews)
       .then(console.log(selectedTicker))
       .then(console.log(filteredTicker))
-
-      .catch((error) => this.setState({ error }));
+      .catch((err) => {
+        message.error(`Please try again later: ${err}`);
+      });
   };
 
   getNews = () => {
     fetch(
-      `${config.NEWS_API_ENDPOINT}/top-headlines?sources=the-wall-street-journal,reuters,bloomberg,barrons&pageSize=50&apiKey=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/top-headlines?sources=the-wall-street-journal,business-insider,bloomberg&pageSize=50&apiKey=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
@@ -102,9 +125,27 @@ class App extends Component {
       .then(this.setNews)
       .catch((error) => this.setState({ error }));
   };
+
+  getWatchlist = () => {
+    fetch(`${config.API_ENDPOINT}/watchlist`, {
+      method: 'GET',
+      headers: {},
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(this.setWatchlist)
+      .catch((error) => this.setState({ error }));
+  };
+
   componentDidMount() {
     this.getNews();
+    this.getWatchlist();
   }
+
   render() {
     const contextValues = {
       loading: this.state.loading,
@@ -113,6 +154,7 @@ class App extends Component {
       getNews: this.getNews,
       setNews: this.setNews,
       handleSelect: this.handleSelect,
+      watchList: this.state.watchList,
     };
     return (
       <AppContext.Provider value={contextValues}>

@@ -7,6 +7,7 @@ const AppContext = React.createContext({
   loading: true,
   setNews: () => {},
   handleSelect: () => {},
+  watchList: [],
 });
 
 export default AppContext;

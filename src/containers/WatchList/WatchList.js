@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import WatchListContainer from '../WatchList/WatchListItem';
+import AppContext from '../../AppContext';
 
 const WatchListDiv = styled.div`
   height: calc(100% - 200px);
@@ -15,12 +16,16 @@ const WatchListDiv = styled.div`
   display: block;
   width: 323.77778px;
   @media (min-width: 300px) {
-    width: 320px;
+    width: 300px;
     height: calc(100% - 400px);
     position: static;
   }
+  @media (min-width: 330px) {
+    width: 340px;
+    position: static;
+  }
   @media (min-width: 600px) {
-    width: 500px;
+    width: 550px;
     height: calc(100% - 100px);
   }
   @media (min-width: 900px) {
@@ -63,14 +68,17 @@ const StyledButton = styled.button`
   @media (max-width: 650px) {
     margin-bottom: 15px;
   }
+  @media (min-width: 655px) {
+    margin-top: 10px;
+  }
 `;
 
 const StyledTitle = styled.h1`
   color: #e8e6e3;
-  margin-bottom: 10px;
   font-family: Rubik;
+  margin-top: 10px;
   @media (min-width: 300px) {
-    font-size: 17px;
+    font-size: 20px;
     letter-spacing: 2px;
   }
   @media (min-width: 650px) {
@@ -79,6 +87,8 @@ const StyledTitle = styled.h1`
 `;
 
 export default function WatchList() {
+  const context = useContext(AppContext);
+
   return (
     <PageContainer>
       <WatchListDiv>
@@ -94,8 +104,6 @@ export default function WatchList() {
           <StyledTitle>Watch List</StyledTitle>
           <StyledButton>Edit</StyledButton>
         </div>
-        <WatchListContainer />
-        <WatchListContainer />
         <WatchListContainer />
       </WatchListDiv>
     </PageContainer>

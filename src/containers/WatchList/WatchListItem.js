@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
+import AppContext from '../../AppContext';
 
 const WatchListContainer = styled.div`
   padding: 10px;
@@ -10,16 +11,25 @@ const WatchListContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  @media (min-width: 900px) {
+    justify-content: space-around;
+  }
 `;
 
 const WatchListItems = styled.div``;
 
 export default function WatchListItem() {
+  const context = useContext(AppContext);
+
   return (
-    <WatchListContainer>
-      <WatchListItems>test stock</WatchListItems>
-      <WatchListItems>test</WatchListItems>
-      <WatchListItems>test</WatchListItems>
-    </WatchListContainer>
+    <>
+      {context.watchList.map((symbol) => {
+        return (
+          <WatchListContainer>
+            <WatchListItems>{symbol.symbol}</WatchListItems>
+          </WatchListContainer>
+        );
+      })}
+    </>
   );
 }

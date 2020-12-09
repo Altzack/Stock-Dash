@@ -13,15 +13,19 @@ const GraphContainer = styled.div`
     background-color: #333;
   }
   @media (min-width: 300px) {
-    width: 320px;
+    width: 300px;
     padding: 120px;
   }
+  @media (min-width: 330px) {
+    width: 340px;
+  }
   @media (min-width: 600px) {
-    width: 500px;
-    padding: 200px;
+    width: 550px;
+    padding: 170px;
   }
   @media (min-width: 900px) {
     width: 800px;
+    padding: 200px;
   }
 `;
 

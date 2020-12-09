@@ -22,7 +22,7 @@ const NewsContainer = styled.article`
     width: 320px;
   }
   @media (min-width: 600px) {
-    width: 500px;
+    width: 550px;
   }
   @media (min-width: 900px) {
     width: 800px;
@@ -49,7 +49,7 @@ const NewsTitle = styled.div`
     font-size: 20px;
   }
   @media (min-width: 600px) {
-    width: 500px;
+    width: 550px;
     font-size: 25px;
   }
   @media (min-width: 900px) {
@@ -108,6 +108,26 @@ const NewsImg = styled.img`
   }
 `;
 
+const StyledButton = styled.button`
+  color: #fff;
+  font-weight: 500;
+  height: 33px;
+
+  background-color: rgb(40, 199, 145);
+  width: 120px;
+  margin-left: 10px;
+  transition: all 0.1s ease-in-out;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.21);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  :hover {
+    transition: all 0.1s ease-in-out;
+    background-color: #3e9afc;
+    cursor: pointer;
+  }
+`;
+
 const Modified = styled.div`
   margin-top: 10px;
   color: #e8e6e3;
@@ -131,8 +151,6 @@ export default class NewsList extends React.Component {
     this.context.getNews();
   };
 
-
-
   render() {
     if (this.context.loading === true)
       return (
@@ -141,38 +159,44 @@ export default class NewsList extends React.Component {
         </div>
       );
 
-    const list =
-      this.context.news.length !== 0
-        ? this.context.news.map((newsObj) => {
-            return (
-              <a href={newsObj.url} target="_blank" rel="noopener noreferrer">
-                <NewsContainer className="drink" key={newsObj.source.id}>
-                  <Title>
-                    <SubTitle>{newsObj.source.name}</SubTitle>
-                    {newsObj.title}
-                    <Modified>
-                      {moment(newsObj.publishedAt).format('MMM Do YY')}
-                    </Modified>
-                  </Title>
-                  {newsObj.urlToImage ? (
-                    <div>
-                      <NewsImg alt="cover" src={newsObj.urlToImage} />
-                    </div>
-                  ) : (
-                    <div>
-                      <NewsImg alt="cover" src="/placeholderchart-min.jpg" />
-                    </div>
-                  )}
-                </NewsContainer>
-              </a>
-            );
-          })
-        : ''
+    const list = this.context.news.map((newsObj) => {
+      return (
+        <a href={newsObj.url} target="_blank" rel="noopener noreferrer">
+          <NewsContainer className="drink" key={newsObj.source.id}>
+            <Title>
+              <SubTitle>{newsObj.source.name}</SubTitle>
+              {newsObj.title}
+              <Modified>
+                {moment(newsObj.publishedAt).format('MMM Do YY')}
+              </Modified>
+            </Title>
+            {newsObj.urlToImage ? (
+              <div>
+                <NewsImg alt="cover" src={newsObj.urlToImage} />
+              </div>
+            ) : (
+              <div>
+                <NewsImg alt="cover" src="/placeholderchart-min.jpg" />
+              </div>
+            )}
+          </NewsContainer>
+        </a>
+      );
+    });
 
     return (
       <PageContainer className="newslist">
         <NewsTitle>News</NewsTitle>
-        {list}
+        {this.context.news.length !== 0 ? (
+          list
+        ) : (
+          <div style={{ textAlign: 'center' }}>
+            <h1 style={{ color: '#fff' }}>No news found for that symbol...</h1>
+            <StyledButton onClick={this.context.getNews}>
+              General News
+            </StyledButton>
+          </div>
+        )}
       </PageContainer>
     );
   }

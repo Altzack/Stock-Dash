@@ -13,6 +13,7 @@ import AppContext from '../../AppContext';
 import NewsList from '../NewsList/NewsList';
 import symbols from './symbols';
 import App from '../../App';
+import { message } from 'antd';
 
 const AppHeaderContainer = styled.div`
   padding: 8px 12px;
@@ -127,6 +128,33 @@ export default function Header() {
       })
     );
   };
+  const addToWatchlist = (e) => {
+    // const getSymbol = {
+    //   symbol: e.target['symbol-search'].value,
+    // };
+    console.log(e.target['symbol-search'].value);
+    // };);
+    // fetch(`${config.API_ENDPOINT}/watchlist`, {
+    //   method: 'POST',
+    //   body: JSON.stringify(getSymbol),
+    //   headers: {
+    //     'content-type': 'application/json',
+    //   },
+    // })
+    //   .then((watchlistRes) => {
+    //     if (!watchlistRes.ok)
+    //       return watchlistRes.json().then((e) => Promise.reject(e));
+    //     return watchlistRes.json();
+    //   })
+    //   .then((watchlistRes) => {
+    //     this.context.addSymbol(watchlistRes);
+    //     this.props.history.push('/');
+    //     message.success('Symbol successfully added to watchlist!');
+    //   })
+    //   .catch((err) => {
+    //     message.error(`Please try again later: ${err}`);
+    //   });
+  };
 
   return (
     <AppHeaderContainer>
@@ -154,7 +182,7 @@ export default function Header() {
               placeholder="AAPL, TSLA, FSLY..."
               allowClear
             />
-            <StyledButton>
+            <StyledButton onClick={addToWatchlist}>
               <GoPlus />
             </StyledButton>
           </HeaderSection>
