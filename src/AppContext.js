@@ -8,6 +8,11 @@ const AppContext = React.createContext({
   setNews: () => {},
   handleSelect: () => {},
   watchList: [],
+  addSymbol: () => {},
+  editing: false,
+  setEditing: () => {},
+  deleteSymbol: () => {},
+  editingOff: () => {},
 });
 
 export default AppContext;

@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components/macro';
 import WatchListContainer from '../WatchList/WatchListItem';
 import AppContext from '../../AppContext';
-
+import Loader from '../common/Loader/Loader';
 const WatchListDiv = styled.div`
   height: calc(100% - 200px);
   overflow-y: auto;
@@ -102,7 +102,11 @@ export default function WatchList() {
           }}
         >
           <StyledTitle>Watch List</StyledTitle>
-          <StyledButton>Edit</StyledButton>
+          {context.editing ? (
+            <StyledButton onClick={context.editingOff}>Done</StyledButton>
+          ) : (
+            <StyledButton onClick={context.setEditing}>Edit</StyledButton>
+          )}
         </div>
         <WatchListContainer />
       </WatchListDiv>

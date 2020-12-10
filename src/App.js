@@ -53,6 +53,7 @@ class App extends Component {
       loading: true,
       data: [],
       watchList: [],
+      editing: false,
     };
   }
 
@@ -61,6 +62,18 @@ class App extends Component {
       news: news.articles,
       error: null,
       loading: false,
+    });
+  };
+
+  setEditing = () => {
+    this.setState({
+      editing: true,
+    });
+  };
+
+  editingOff = () => {
+    this.setState({
+      editing: false,
     });
   };
 
@@ -74,7 +87,7 @@ class App extends Component {
 
   addSymbol = (symbol) => {
     this.setState({
-      watchList: [...this.state.watchList, symbol],
+      watchList: [symbol, ...this.state.watchList],
     });
   };
 
@@ -155,6 +168,11 @@ class App extends Component {
       setNews: this.setNews,
       handleSelect: this.handleSelect,
       watchList: this.state.watchList,
+      editing: this.state.editing,
+      addSymbol: this.addSymbol,
+      setEditing: this.setEditing,
+      editingOff: this.editingOff,
+      deleteSymbol: this.deleteSymbol,
     };
     return (
       <AppContext.Provider value={contextValues}>

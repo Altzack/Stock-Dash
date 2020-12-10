@@ -4,7 +4,7 @@ import NewsList from '../NewsList/NewsList';
 import Graph from '../Graph/Graph';
 import WatchList from '../WatchList/WatchList';
 
-export default function LandingPage() {
+function LandingPage() {
   return (
     <div style={{ color: '#000', backgroundColor: 'rgb(27, 29, 30)' }}>
       <div>
@@ -19,3 +19,5 @@ export default function LandingPage() {
     </div>
   );
 }
+
+export default LandingPage;

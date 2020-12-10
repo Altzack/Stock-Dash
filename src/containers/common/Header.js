@@ -129,31 +129,35 @@ export default function Header() {
     );
   };
   const addToWatchlist = (e) => {
-    // const getSymbol = {
-    //   symbol: e.target['symbol-search'].value,
-    // };
-    console.log(e.target['symbol-search'].value);
-    // };);
-    // fetch(`${config.API_ENDPOINT}/watchlist`, {
-    //   method: 'POST',
-    //   body: JSON.stringify(getSymbol),
-    //   headers: {
-    //     'content-type': 'application/json',
-    //   },
-    // })
-    //   .then((watchlistRes) => {
-    //     if (!watchlistRes.ok)
-    //       return watchlistRes.json().then((e) => Promise.reject(e));
-    //     return watchlistRes.json();
-    //   })
-    //   .then((watchlistRes) => {
-    //     this.context.addSymbol(watchlistRes);
-    //     this.props.history.push('/');
-    //     message.success('Symbol successfully added to watchlist!');
-    //   })
-    //   .catch((err) => {
-    //     message.error(`Please try again later: ${err}`);
-    //   });
+    e.preventDefault();
+
+    const symbol = document.getElementById('autoComplete').value;
+
+    const filteredSymbol = symbol.slice(0, 5).replace('|', '').trim();
+    const getSymbol = {
+      symbol: filteredSymbol,
+    };
+    console.log(filteredSymbol);
+    console.log(getSymbol);
+
+    fetch(`${config.API_ENDPOINT}/watchlist`, {
+      method: 'POST',
+      body: JSON.stringify(getSymbol),
+      headers: { 'content-type': 'application/json' },
+    })
+      .then((watchlistRes) => {
+        if (!watchlistRes.ok)
+          return watchlistRes.json().then((e) => Promise.reject(e));
+        return watchlistRes.json();
+      })
+      .then((watchlistRes) => {
+        context.addSymbol(watchlistRes);
+        // message.success('Symbol successfully added to watchlist!');
+      })
+      .catch((err) => {
+        // message.error(`Please try again later: ${err}`);
+        console.log(err);
+      });
   };
 
   return (
@@ -176,6 +180,7 @@ export default function Header() {
               style={{
                 width: 200,
               }}
+              id="autoComplete"
               dropdownMatchSelectWidth={300}
               onSelect={context.handleSelect}
               onSearch={handleSearch}
