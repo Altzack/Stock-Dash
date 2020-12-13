@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
 import AppContext from '../../AppContext';
 import Loader from '../common/Loader/Loader';
 import '../../App.css';

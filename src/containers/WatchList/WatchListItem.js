@@ -4,7 +4,6 @@ import AppContext from '../../AppContext';
 import { TiDelete } from 'react-icons/ti';
 import { message } from 'antd';
 import config from '../../config';
-import { useHistory } from 'react-router-dom';
 
 const WatchListContainer = styled.div`
   padding: 10px;
@@ -24,7 +23,6 @@ const WatchListItems = styled.div``;
 
 function WatchListItem() {
   const context = useContext(AppContext);
-  const history = useHistory();
 
   const onDelete = (e) => {
     e.preventDefault();

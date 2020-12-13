@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import NewsList from '../NewsList/NewsList';
 import Graph from '../Graph/Graph';
 import WatchList from '../WatchList/WatchList';
