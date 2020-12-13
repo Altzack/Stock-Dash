@@ -10,7 +10,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { GoPlus } from 'react-icons/go';
 import config from '../../config';
 import AppContext from '../../AppContext';
-import symbols from './symbols';
+import symbols from '../../symbols';
 
 const AppHeaderContainer = styled.div`
   padding: 8px 12px;

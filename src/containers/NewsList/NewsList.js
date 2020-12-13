@@ -161,7 +161,7 @@ export default class NewsList extends React.Component {
     const list = this.context.news.map((newsObj) => {
       return (
         <a href={newsObj.url} target="_blank" rel="noopener noreferrer">
-          <NewsContainer className="drink" key={newsObj.source.id}>
+          <NewsContainer className="drink">
             <Title>
               <SubTitle>{newsObj.source.name}</SubTitle>
               {newsObj.title}
@@ -169,9 +169,9 @@ export default class NewsList extends React.Component {
                 {moment(newsObj.publishedAt).format('MMM Do YY')}
               </Modified>
             </Title>
-            {newsObj.urlToImage ? (
+            {newsObj.image ? (
               <div>
-                <NewsImg alt="cover" src={newsObj.urlToImage} />
+                <NewsImg alt="cover" src={newsObj.image} />
               </div>
             ) : (
               <div>

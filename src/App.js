@@ -99,9 +99,12 @@ class App extends Component {
   };
 
   handleSelect = (selectedTicker) => {
-    const filteredTicker = selectedTicker.replace('|', '');
+    const tickerArr = selectedTicker.split('|');
+    const filteredTicker = tickerArr[1].trim();
+    const regexFilteredTicker = filteredTicker.replace(/[\,\.]/g, '');
+
     fetch(
-      `${config.NEWS_API_ENDPOINT}/everything?q=${filteredTicker}&language=en&sortBy=publishedAt&pageSize=30&apiKey=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/search?q=${regexFilteredTicker}&lang=en&sortby=publishedAt&token=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
@@ -114,8 +117,7 @@ class App extends Component {
         return res.json();
       })
       .then(this.setNews)
-      .then(console.log(selectedTicker))
-      .then(console.log(filteredTicker))
+      .then(console.log(regexFilteredTicker))
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });
@@ -123,7 +125,7 @@ class App extends Component {
 
   getNews = () => {
     fetch(
-      `${config.NEWS_API_ENDPOINT}/top-headlines?sources=the-wall-street-journal,business-insider,bloomberg&pageSize=50&apiKey=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/top-headlines?topic=business&lang=en&token=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
