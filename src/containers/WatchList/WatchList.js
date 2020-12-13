@@ -108,7 +108,13 @@ export default function WatchList() {
             <StyledButton onClick={context.setEditing}>Edit</StyledButton>
           )}
         </div>
-        <WatchListContainer />
+        {context.loading ? (
+          <div style={{ marginTop: 150 }}>
+            <Loader />
+          </div>
+        ) : (
+          <WatchListContainer />
+        )}
       </WatchListDiv>
     </PageContainer>
   );

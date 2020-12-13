@@ -16,6 +16,48 @@
   font-size: 27px;
 }
 
+@media (min-width: 300px) {
+  .logoImg {
+    width: 100px;
+    margin-left: 65px;
+  }
+}
+
+@media (min-width: 340px) {
+  .logoImg {
+    width: 100px;
+    margin-left: 73px;
+  }
+}
+
+@media (min-width: 400px) {
+  .logoImg {
+    width: 100px;
+    margin-left: 82px;
+  }
+}
+
+@media (min-width: 600px) {
+  .logoImg {
+    width: 130px;
+    margin-left: 150px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .logoImg {
+    width: 160px;
+    margin-left: 200px;
+  }
+}
+
+@media (min-width: 1030px) {
+  .logoImg {
+    width: 160px;
+    margin-left: 0px;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;

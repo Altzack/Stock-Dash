@@ -33,7 +33,9 @@ const StyledButton = styled.button`
   height: 33px;
   line-height: 33px;
   background-color: rgb(40, 199, 145);
-  width: 50px;
+  width: 42px;
+  font-size: 15px;
+
   margin-left: 10px;
   transition: all 0.1s ease-in-out;
   border: 1px solid rgba(0, 0, 0, 0.21);
@@ -44,6 +46,8 @@ const StyledButton = styled.button`
     transition: all 0.1s ease-in-out;
     background-color: #3e9afc;
     cursor: pointer;
+  }
+  @media (min-width: 300px) {
   }
 `;
 
@@ -103,7 +107,7 @@ export default function Header() {
   const context = useContext(AppContext);
   const [visible, setVisible] = useState(false);
   const [options, setOptions] = useState([]);
-  const [searchNews, setSearchNews] = useState([]);
+  const [clicked, setClicked] = useState(false);
 
   const showDrawer = () => {
     setVisible(true);
@@ -171,7 +175,7 @@ export default function Header() {
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'center' }}>
             <LogoLink to="/">
-              <img alt="logo" src="/favicon-32x32.png" />
+              <img alt="logo" src="/stockdashlogo.png" className="logoImg" />
             </LogoLink>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'flex-end' }}>
@@ -210,14 +214,38 @@ export default function Header() {
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'center' }}>
             <LogoLink to="/">
-              <img alt="logo" src="/favicon-32x32.png" />
+              {clicked ? (
+                ''
+              ) : (
+                <img alt="logo" src="/stockdashlogo.png" className="logoImg" />
+              )}
             </LogoLink>
           </HeaderSection>
           <HeaderSection
             className="searchContainer"
-            style={{ justifyContent: 'flex-end' }}
+            style={{ justifyContent: 'flex-end', width: '65%' }}
           >
-            <AiOutlineSearch />
+            {clicked === true ? (
+              <>
+                <AutoComplete
+                  options={options}
+                  style={{
+                    width: 150,
+                  }}
+                  id="autoComplete"
+                  dropdownMatchSelectWidth={300}
+                  onSelect={context.handleSelect}
+                  onSearch={handleSearch}
+                  placeholder="AAPL, TSLA, FSLY..."
+                  allowClear
+                />
+                <StyledButton onClick={addToWatchlist}>
+                  <GoPlus />
+                </StyledButton>
+              </>
+            ) : (
+              <AiOutlineSearch onClick={() => setClicked(true)} />
+            )}
           </HeaderSection>
         </HeaderContentContainer>
         <Drawer

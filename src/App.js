@@ -87,7 +87,7 @@ class App extends Component {
 
   addSymbol = (symbol) => {
     this.setState({
-      watchList: [symbol, ...this.state.watchList],
+      watchList: [...this.state.watchList, symbol],
     });
   };
 
@@ -101,7 +101,7 @@ class App extends Component {
   handleSelect = (selectedTicker) => {
     const filteredTicker = selectedTicker.replace('|', '');
     fetch(
-      `${config.NEWS_API_ENDPOINT}/everything?q=${filteredTicker}&language=en&sortBy=relevancy&pageSize=30&apiKey=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/everything?q=${filteredTicker}&language=en&sortBy=publishedAt&pageSize=30&apiKey=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
@@ -173,6 +173,7 @@ class App extends Component {
       setEditing: this.setEditing,
       editingOff: this.editingOff,
       deleteSymbol: this.deleteSymbol,
+      getWatchlist: this.getWatchlist,
     };
     return (
       <AppContext.Provider value={contextValues}>

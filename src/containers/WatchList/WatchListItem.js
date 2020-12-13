@@ -4,6 +4,7 @@ import AppContext from '../../AppContext';
 import { TiDelete } from 'react-icons/ti';
 import { message } from 'antd';
 import config from '../../config';
+import { useHistory } from 'react-router-dom';
 
 const WatchListContainer = styled.div`
   padding: 10px;
@@ -15,7 +16,7 @@ const WatchListContainer = styled.div`
   justify-content: space-evenly;
   width: 100%;
   @media (min-width: 900px) {
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 `;
 
@@ -23,6 +24,7 @@ const WatchListItems = styled.div``;
 
 function WatchListItem() {
   const context = useContext(AppContext);
+  const history = useHistory();
 
   const onDelete = (e) => {
     e.preventDefault();
@@ -39,7 +41,7 @@ function WatchListItem() {
       .then(() => {
         context.deleteSymbol(symbolId);
         message.success('Symbol successfully deleted');
-        // history.push('/');
+        context.getWatchlist();
       })
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
@@ -55,7 +57,13 @@ function WatchListItem() {
               <button
                 id={symbol.id}
                 onClick={onDelete}
-                style={{ fontSize: 20 }}
+                style={{
+                  fontSize: 20,
+                  backgroundColor: 'rgb(27, 29, 30)',
+                  outline: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
               >
                 <TiDelete />
               </button>
@@ -63,6 +71,7 @@ function WatchListItem() {
               ''
             )}
             <WatchListItems>{symbol.symbol}</WatchListItems>
+            <WatchListItems>142.18</WatchListItems>
           </WatchListContainer>
         );
       })}

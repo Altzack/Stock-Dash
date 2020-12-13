@@ -13,6 +13,7 @@ const AppContext = React.createContext({
   setEditing: () => {},
   deleteSymbol: () => {},
   editingOff: () => {},
+  getWatchlist: () => {},
 });
 
 export default AppContext;
