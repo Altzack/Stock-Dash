@@ -11,6 +11,7 @@ import { GoPlus } from 'react-icons/go';
 import config from '../../config';
 import AppContext from '../../AppContext';
 import symbols from '../../symbols';
+import { message } from 'antd';
 
 const AppHeaderContainer = styled.div`
   padding: 8px 12px;
@@ -32,7 +33,7 @@ const StyledButton = styled.button`
   background-color: rgb(40, 199, 145);
   width: 42px;
   font-size: 15px;
-
+  outline: none;
   margin-left: 10px;
   transition: all 0.1s ease-in-out;
   border: 1px solid rgba(0, 0, 0, 0.21);
@@ -105,7 +106,10 @@ export default function Header() {
     setOptions(
       filteredTickers.map((ticker) => {
         return {
-          value: ticker.symbol + ' | ' + ticker['Security Name'],
+          value:
+            ticker.symbol +
+            ' | ' +
+            ticker['Security Name'].replace(/[,.]/g, ''),
         };
       })
     );
@@ -115,31 +119,37 @@ export default function Header() {
 
     const symbol = document.getElementById('autoComplete').value;
 
-    const filteredSymbol = symbol.slice(0, 5).replace('|', '').trim();
-    const getSymbol = {
-      symbol: filteredSymbol,
-    };
-    console.log(filteredSymbol);
-    console.log(getSymbol);
+    const tickerArr = symbol.split('|');
+    const filteredTicker = tickerArr[0].trim();
 
-    fetch(`${config.API_ENDPOINT}/watchlist`, {
-      method: 'POST',
-      body: JSON.stringify(getSymbol),
-      headers: { 'content-type': 'application/json' },
-    })
-      .then((watchlistRes) => {
-        if (!watchlistRes.ok)
-          return watchlistRes.json().then((e) => Promise.reject(e));
-        return watchlistRes.json();
-      })
-      .then((watchlistRes) => {
-        context.addSymbol(watchlistRes);
-        // message.success('Symbol successfully added to watchlist!');
-      })
-      .catch((err) => {
-        // message.error(`Please try again later: ${err}`);
-        console.log(err);
-      });
+    const getSymbol = {
+      symbol: filteredTicker,
+    };
+    const found = (arr) => arr.symbol === filteredTicker;
+
+    filteredTicker.length === 0 ||
+    context.watchList.some(found) === true ||
+    !symbol.includes('|')
+      ? message.error('Symbol already in watch list or nothing selected')
+      : fetch(`${config.API_ENDPOINT}/watchlist`, {
+          method: 'POST',
+          body: JSON.stringify(getSymbol),
+          headers: { 'content-type': 'application/json' },
+        })
+          .then((watchlistRes) => {
+            if (!watchlistRes.ok)
+              return watchlistRes.json().then((e) => Promise.reject(e));
+            return watchlistRes.json();
+          })
+          .then((watchlistRes) => {
+            context.addSymbol(watchlistRes);
+            message.success(
+              `${filteredTicker} successfully added to watchlist!`
+            );
+          })
+          .catch((err) => {
+            message.error(`Please try again later: ${err}`);
+          });
   };
 
   return (

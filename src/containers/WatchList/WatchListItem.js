@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
 import AppContext from '../../AppContext';
-import { TiDelete } from 'react-icons/ti';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { message } from 'antd';
 import config from '../../config';
 
@@ -17,12 +17,40 @@ const WatchListContainer = styled.div`
   @media (min-width: 900px) {
     justify-content: space-evenly;
   }
+  :hover {
+    background-color: rgb(40, 47, 51);
+    cursor: pointer;
+  }
 `;
 
 const WatchListItems = styled.div``;
 
 function WatchListItem() {
   const context = useContext(AppContext);
+
+  const listOnSelect = (e) => {
+    e.preventDefault();
+    const selectedSymbol = e.currentTarget.id;
+
+    fetch(
+      `${config.NEWS_API_ENDPOINT}/search?q=${selectedSymbol}&lang=en&sortby=publishedAt&country=us&token=${config.NEWS_API_KEY}`,
+      {
+        method: 'GET',
+        headers: {},
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(context.setNews)
+      .then(console.log(selectedSymbol))
+      .catch((err) => {
+        message.error(`Please try again later: ${err}`);
+      });
+  };
 
   const onDelete = (e) => {
     e.preventDefault();
@@ -38,7 +66,7 @@ function WatchListItem() {
       })
       .then(() => {
         context.deleteSymbol(symbolId);
-        message.success('Symbol successfully deleted');
+        message.success('Symbol successfully deleted!');
         context.getWatchlist();
       })
       .catch((err) => {
@@ -50,27 +78,35 @@ function WatchListItem() {
     <>
       {context.watchList.map((symbol) => {
         return (
-          <WatchListContainer key={symbol.id}>
+          <>
             {context.editing ? (
-              <button
-                id={symbol.id}
-                onClick={onDelete}
-                style={{
-                  fontSize: 20,
-                  backgroundColor: 'rgb(27, 29, 30)',
-                  outline: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                }}
-              >
-                <TiDelete />
-              </button>
+              <WatchListContainer key={symbol.id} id={symbol.symbol}>
+                <RiDeleteBin2Fill
+                  onClick={onDelete}
+                  id={symbol.id}
+                  style={{
+                    cursor: 'pointer',
+                    fontSize: 20,
+                    outline: 'none',
+                    backgroundColor: 'rgb(27, 29, 30)',
+                    border: 'none',
+                    padding: 0,
+                  }}
+                />
+                <WatchListItems>{symbol.symbol}</WatchListItems>
+                <WatchListItems>142.18</WatchListItems>
+              </WatchListContainer>
             ) : (
-              ''
+              <WatchListContainer
+                onClick={listOnSelect}
+                key={symbol.id}
+                id={symbol.symbol}
+              >
+                <WatchListItems>{symbol.symbol}</WatchListItems>
+                <WatchListItems>142.18</WatchListItems>
+              </WatchListContainer>
             )}
-            <WatchListItems>{symbol.symbol}</WatchListItems>
-            <WatchListItems>142.18</WatchListItems>
-          </WatchListContainer>
+          </>
         );
       })}
     </>

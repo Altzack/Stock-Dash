@@ -100,11 +100,12 @@ class App extends Component {
 
   handleSelect = (selectedTicker) => {
     const tickerArr = selectedTicker.split('|');
-    const filteredTicker = tickerArr[1].trim();
-    const regexFilteredTicker = filteredTicker.replace(/[\,\.]/g, '');
+    const filteredSecurityName = tickerArr[1].trim();
+    const regexFilteredTicker = filteredSecurityName.replace(/[,.]/g, '');
+    const filterSpacesTicker = regexFilteredTicker.replace(/  +/g, ' ');
 
     fetch(
-      `${config.NEWS_API_ENDPOINT}/search?q=${regexFilteredTicker}&lang=en&sortby=publishedAt&token=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/search?q=${filterSpacesTicker}&lang=en&sortby=publishedAt&country=us&token=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
@@ -117,7 +118,7 @@ class App extends Component {
         return res.json();
       })
       .then(this.setNews)
-      .then(console.log(regexFilteredTicker))
+      .then(console.log(filterSpacesTicker))
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });
@@ -125,7 +126,7 @@ class App extends Component {
 
   getNews = () => {
     fetch(
-      `${config.NEWS_API_ENDPOINT}/top-headlines?topic=business&lang=en&token=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/top-headlines?topic=business&lang=en&country=us&token=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
