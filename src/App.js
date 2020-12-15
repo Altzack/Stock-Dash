@@ -70,7 +70,7 @@ class App extends Component {
     let newPrices = {
       price: price['Global Quote']['05. price'],
       symbol: price['Global Quote']['01. symbol'],
-      change: price['Global Quote']['09. change'],
+      change: price['Global Quote']['10. change percent'],
       previousClose: price['Global Quote']['08. previous close'],
     };
 

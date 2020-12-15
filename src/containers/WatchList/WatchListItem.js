@@ -112,7 +112,7 @@ function WatchListItem() {
                         {price.previousClose > price.price ? (
                           <div style={{ color: 'red' }}>{price.change}</div>
                         ) : (
-                          <div style={{ color: 'green' }}>{price.change}</div>
+                          <div style={{ color: 'green' }}>+{price.change}</div>
                         )}
                       </WatchListItems>
                     </>
