@@ -51,7 +51,7 @@ class App extends Component {
     this.state = {
       news: [],
       loading: true,
-      data: [],
+      closePrice: [],
       watchList: [],
       editing: false,
     };
@@ -62,6 +62,17 @@ class App extends Component {
       news: news.articles,
       error: null,
       loading: false,
+    });
+  };
+
+  setClosePrice = (price) => {
+    let newPrices = {
+      price: price['Global Quote']['05. price'],
+      symbol: price['Global Quote']['01. symbol'],
+    };
+
+    this.setState({
+      closePrice: [newPrices, ...this.state.closePrice],
     });
   };
 
@@ -100,12 +111,10 @@ class App extends Component {
 
   handleSelect = (selectedTicker) => {
     const tickerArr = selectedTicker.split('|');
-    const filteredSecurityName = tickerArr[1].trim();
-    const regexFilteredTicker = filteredSecurityName.replace(/[,.]/g, '');
-    const filterSpacesTicker = regexFilteredTicker.replace(/  +/g, ' ');
+    const filteredSecurityName = tickerArr[0].trim();
 
     fetch(
-      `${config.NEWS_API_ENDPOINT}/search?q=${filterSpacesTicker}&lang=en&sortby=publishedAt&country=us&token=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/search?q=${filteredSecurityName}&lang=en&sortby=publishedAt&country=us&token=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
@@ -118,10 +127,34 @@ class App extends Component {
         return res.json();
       })
       .then(this.setNews)
-      .then(console.log(filterSpacesTicker))
+      .then(console.log(filteredSecurityName))
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });
+  };
+
+  getClosePrice = () => {
+    let watchListSymbols = this.state.watchList;
+    for (let i = 0; i < watchListSymbols.length; i++) {
+      const searchSymbols = watchListSymbols[i].symbol;
+      fetch(
+        `${config.DATA_API_ENDPOINT}&symbol=${searchSymbols}&apikey=${config.DATA_API_KEY}`,
+        {
+          method: 'GET',
+          headers: {},
+        }
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(res.status);
+          }
+          return res.json();
+        })
+        .then(this.setClosePrice)
+        .catch((err) => {
+          message.error(`Please try again later: ${err}`);
+        });
+    }
   };
 
   getNews = () => {
@@ -139,7 +172,9 @@ class App extends Component {
         return res.json();
       })
       .then(this.setNews)
-      .catch((error) => this.setState({ error }));
+      .catch((err) => {
+        message.error(`Please try again later: ${err}`);
+      });
   };
 
   getWatchlist = () => {
@@ -154,7 +189,11 @@ class App extends Component {
         return res.json();
       })
       .then(this.setWatchlist)
-      .catch((error) => this.setState({ error }));
+      .then(this.getClosePrice)
+
+      .catch((err) => {
+        message.error(`Please try again later: ${err}`);
+      });
   };
 
   componentDidMount() {
@@ -166,7 +205,7 @@ class App extends Component {
     const contextValues = {
       loading: this.state.loading,
       news: this.state.news,
-      data: this.state.data || [],
+      closePrice: this.state.closePrice || [],
       getNews: this.getNews,
       setNews: this.setNews,
       handleSelect: this.handleSelect,
@@ -177,13 +216,15 @@ class App extends Component {
       editingOff: this.editingOff,
       deleteSymbol: this.deleteSymbol,
       getWatchlist: this.getWatchlist,
+      setClosePrice: this.setClosePrice,
+      getClosePrice: this.getClosePrice,
     };
     return (
       <AppContext.Provider value={contextValues}>
         <>
           <Router>
             <QueryParamProvider ReactRouterRoute={Route}>
-              <AppWrapper tickers={this.state.tickers}>
+              <AppWrapper>
                 <Switch>
                   <Route exact path="/">
                     <LandingPage />

@@ -128,6 +128,7 @@ export default function Header() {
     const found = (arr) => arr.symbol === filteredTicker;
 
     filteredTicker.length === 0 ||
+    context.watchList.length >= 5 ||
     context.watchList.some(found) === true ||
     !symbol.includes('|')
       ? message.error('Symbol already in watch list or nothing selected')
@@ -146,6 +147,7 @@ export default function Header() {
             message.success(
               `${filteredTicker} successfully added to watchlist!`
             );
+            window.location.reload();
           })
           .catch((err) => {
             message.error(`Please try again later: ${err}`);

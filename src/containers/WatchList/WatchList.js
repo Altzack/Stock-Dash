@@ -101,7 +101,7 @@ export default function WatchList() {
             marginBottom: 10,
           }}
         >
-          <StyledTitle>Watch List</StyledTitle>
+          <StyledTitle>Your top five</StyledTitle>
           {context.editing ? (
             <StyledButton onClick={context.editingOff}>Done</StyledButton>
           ) : (

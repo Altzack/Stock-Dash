@@ -67,6 +67,7 @@ function WatchListItem() {
       .then(() => {
         context.deleteSymbol(symbolId);
         message.success('Symbol successfully deleted!');
+        window.location.reload();
         context.getWatchlist();
       })
       .catch((err) => {
@@ -94,7 +95,6 @@ function WatchListItem() {
                   }}
                 />
                 <WatchListItems>{symbol.symbol}</WatchListItems>
-                <WatchListItems>142.18</WatchListItems>
               </WatchListContainer>
             ) : (
               <WatchListContainer
@@ -103,7 +103,13 @@ function WatchListItem() {
                 id={symbol.symbol}
               >
                 <WatchListItems>{symbol.symbol}</WatchListItems>
-                <WatchListItems>142.18</WatchListItems>
+                {context.closePrice.map((price) => {
+                  return price.symbol === symbol.symbol ? (
+                    <WatchListItems>${Number(price.price)}</WatchListItems>
+                  ) : (
+                    ''
+                  );
+                })}
               </WatchListContainer>
             )}
           </>

@@ -14,6 +14,9 @@ const AppContext = React.createContext({
   deleteSymbol: () => {},
   editingOff: () => {},
   getWatchlist: () => {},
+  closePrice: [],
+  setClosePrice: () => {},
+  getClosePrice: () => {},
 });
 
 export default AppContext;
