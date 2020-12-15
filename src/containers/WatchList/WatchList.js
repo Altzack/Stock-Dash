@@ -54,7 +54,7 @@ const StyledButton = styled.button`
   font-weight: 500;
   height: 34px;
   background-color: rgb(40, 199, 145);
-  width: 50px;
+  width: 55px;
   transition: all 0.1s ease-in-out;
   border: 1px solid rgba(0, 0, 0, 0.21);
   border-bottom: 4px solid rgba(0, 0, 0, 0.21);

@@ -4,6 +4,7 @@ import AppContext from '../../AppContext';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { message } from 'antd';
 import config from '../../config';
+import Loader from '../common/Loader/Loader';
 
 const WatchListContainer = styled.div`
   padding: 10px;
@@ -105,7 +106,16 @@ function WatchListItem() {
                 <WatchListItems>{symbol.symbol}</WatchListItems>
                 {context.closePrice.map((price) => {
                   return price.symbol === symbol.symbol ? (
-                    <WatchListItems>${Number(price.price)}</WatchListItems>
+                    <>
+                      <WatchListItems>${Number(price.price)}</WatchListItems>
+                      <WatchListItems>
+                        {price.previousClose > price.price ? (
+                          <div style={{ color: 'red' }}>{price.change}</div>
+                        ) : (
+                          <div style={{ color: 'green' }}>{price.change}</div>
+                        )}
+                      </WatchListItems>
+                    </>
                   ) : (
                     ''
                   );

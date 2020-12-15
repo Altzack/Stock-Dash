@@ -25,6 +25,11 @@ const AppHeaderContainer = styled.div`
   background-color: rgb(27, 28, 29);
 `;
 
+const FooterSeparator = styled.span`
+  padding: 0 10px;
+  margin-top: 2px;
+`;
+
 const StyledButton = styled.button`
   color: #fff;
   font-weight: 500;
@@ -159,6 +164,10 @@ export default function Header() {
       <DesktopOnly>
         <HeaderContentContainer>
           <HeaderSection style={{ justifyContent: 'flex-start' }}>
+            <Link style={{ textDecoration: 'none', color: '#000' }} to="/">
+              <StyledHeader>Home</StyledHeader>
+            </Link>
+            <FooterSeparator>|</FooterSeparator>
             <Link style={{ textDecoration: 'none', color: '#000' }} to="/about">
               <StyledHeader>About</StyledHeader>
             </Link>
@@ -245,6 +254,13 @@ export default function Header() {
           visible={visible}
           key="AppHeader-left-drawer"
         >
+          <Link
+            onClick={onClose}
+            style={{ textDecoration: 'none', color: '#000' }}
+            to="/"
+          >
+            <h3>Home</h3>
+          </Link>
           <Link
             onClick={onClose}
             style={{ textDecoration: 'none', color: '#000' }}

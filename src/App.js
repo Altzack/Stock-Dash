@@ -17,6 +17,7 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import config from './config';
 import About from './containers/About/About';
 import { message } from 'antd';
+import NewsPage from './containers/NewsPage/NewsPage';
 
 const AppContainer = styled.div`
   display: flex;
@@ -69,10 +70,13 @@ class App extends Component {
     let newPrices = {
       price: price['Global Quote']['05. price'],
       symbol: price['Global Quote']['01. symbol'],
+      change: price['Global Quote']['09. change'],
+      previousClose: price['Global Quote']['08. previous close'],
     };
 
     this.setState({
       closePrice: [newPrices, ...this.state.closePrice],
+      loading: false,
     });
   };
 
@@ -229,7 +233,7 @@ class App extends Component {
                   <Route exact path="/">
                     <LandingPage />
                   </Route>
-                  <Route exact path="/about">
+                  <Route path="/about">
                     <About />
                   </Route>
                   <Route>
