@@ -9,7 +9,7 @@ import Loader from '../common/Loader/Loader';
 const WatchListContainer = styled.div`
   padding: 10px;
   font-family: Rubik;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #fff;
   font-size: 15px;
   display: flex;
@@ -107,12 +107,26 @@ function WatchListItem() {
                 {context.closePrice.map((price) => {
                   return price.symbol === symbol.symbol ? (
                     <>
-                      <WatchListItems>${Number(price.price)}</WatchListItems>
                       <WatchListItems>
                         {price.previousClose > price.price ? (
-                          <div style={{ color: 'red' }}>{price.change}</div>
+                          <div style={{ color: 'red' }}>
+                            ${Number(price.price)}
+                          </div>
                         ) : (
-                          <div style={{ color: 'green' }}>+{price.change}</div>
+                          <div style={{ color: 'green' }}>
+                            ${Number(price.price)}
+                          </div>
+                        )}
+                      </WatchListItems>
+                      <WatchListItems>
+                        {price.previousClose > price.price ? (
+                          <div style={{ color: 'red' }}>
+                            {price.change.slice(0, 5)}%
+                          </div>
+                        ) : (
+                          <div style={{ color: 'green' }}>
+                            +{price.change.slice(0, 4)}%
+                          </div>
                         )}
                       </WatchListItems>
                     </>

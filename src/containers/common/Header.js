@@ -232,11 +232,10 @@ export default function Header() {
                     width: 150,
                   }}
                   id="autoComplete"
-                  dropdownMatchSelectWidth={300}
+                  dropdownMatchSelectWidth={250}
                   onSelect={context.handleSelect}
                   onSearch={handleSearch}
                   placeholder="AAPL, TSLA, FSLY..."
-                  allowClear
                 />
                 <StyledButton onClick={addToWatchlist}>
                   <GoPlus />

@@ -3,12 +3,13 @@ import styled from 'styled-components/macro';
 import WatchListContainer from '../WatchList/WatchListItem';
 import AppContext from '../../AppContext';
 import Loader from '../common/Loader/Loader';
+
 const WatchListDiv = styled.div`
   height: calc(100% - 200px);
   overflow-y: auto;
-  padding: 24px;
+  padding: 15px;
   position: fixed;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   border: 1px solid #fff;
   background-color: rgb(27, 29, 30);
   scrollbar-width: none;
@@ -35,8 +36,26 @@ const WatchListDiv = styled.div`
   @media (min-width: 1025px) {
     width: 323px;
     position: fixed;
-    margin-left: 90px;
-    height: calc(100% - 200px);
+    margin-left: 110px;
+    height: calc(100% - 600px);
+  }
+`;
+
+const SubTitle = styled.div`
+  font-family: Rubik;
+  color: #e8e6e3;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 10px;
+  @media (min-width: 300px) {
+    font-size: 8px;
+  }
+  @media (min-width: 600px) {
+    font-size: 8px;
+  }
+  @media (min-width: 900px) {
+    font-size: 8px;
   }
 `;
 
@@ -66,14 +85,14 @@ const StyledButton = styled.button`
     cursor: pointer;
   }
   @media (max-width: 650px) {
-    margin-bottom: 15px;
+    margin-top: 5px;
   }
   @media (min-width: 655px) {
     margin-top: 10px;
   }
 `;
 
-const StyledTitle = styled.h1`
+const StyledTitle = styled.div`
   color: #e8e6e3;
   font-family: Rubik;
   margin-top: 10px;
@@ -83,6 +102,7 @@ const StyledTitle = styled.h1`
   }
   @media (min-width: 650px) {
     font-size: 25px;
+    margin-left: 5px;
   }
 `;
 
@@ -115,6 +135,7 @@ export default function WatchList() {
         ) : (
           <WatchListContainer />
         )}
+        <SubTitle>click symbol to get news</SubTitle>
       </WatchListDiv>
     </PageContainer>
   );

@@ -66,15 +66,15 @@ const Title = styled.div`
   color: #e8e6e3;
   margin-bottom: 10px;
   @media (min-width: 300px) {
-    font-size: 10px;
+    font-size: 11px;
     width: 200px;
   }
   @media (min-width: 600px) {
-    font-size: 12px;
+    font-size: 13px;
     width: 350px;
   }
   @media (min-width: 900px) {
-    font-size: 15px;
+    font-size: 14px;
     width: 600px;
   }
 `;
@@ -89,13 +89,13 @@ const SubTitle = styled.div`
   font-size: 10px;
   margin-bottom: 10px;
   @media (min-width: 300px) {
-    font-size: 8px;
+    font-size: 12px;
   }
   @media (min-width: 600px) {
-    font-size: 11px;
+    font-size: 14px;
   }
   @media (min-width: 900px) {
-    font-size: 13px;
+    font-size: 15px;
   }
 `;
 
@@ -132,10 +132,10 @@ const Modified = styled.div`
   color: #e8e6e3;
 
   @media (min-width: 300px) {
-    font-size: 8px;
+    font-size: 10px;
   }
   @media (min-width: 600px) {
-    font-size: 11px;
+    font-size: 12px;
   }
   @media (min-width: 900px) {
     font-size: 13px;
@@ -190,7 +190,9 @@ export default class NewsList extends React.Component {
           list
         ) : (
           <div style={{ textAlign: 'center' }}>
-            <h1 style={{ color: '#fff' }}>No news found for that symbol...</h1>
+            <h1 style={{ padding: 10, color: '#fff' }}>
+              No news found for that symbol...
+            </h1>
             <StyledButton onClick={this.context.getNews}>
               General News
             </StyledButton>
