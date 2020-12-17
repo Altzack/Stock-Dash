@@ -34,9 +34,9 @@ const StyledButton = styled.button`
   color: #fff;
   font-weight: 500;
   height: 33px;
-  line-height: 33px;
+  line-height: 32px;
   background-color: rgb(40, 199, 145);
-  width: 42px;
+  width: 40px;
   font-size: 15px;
   outline: none;
   margin-left: 10px;
@@ -47,10 +47,11 @@ const StyledButton = styled.button`
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
   :hover {
     transition: all 0.1s ease-in-out;
-    background-color: #3e9afc;
+    background-color: rgb(48, 240, 176);
     cursor: pointer;
   }
-  @media (min-width: 300px) {
+  @media (min-width: 1025px) {
+    width: 100px;
   }
 `;
 
@@ -76,7 +77,7 @@ const StyledHeader = styled.h3`
   color: #e8e6e3;
   margin-bottom: 0;
   :hover {
-    color: #1890ff;
+    color: rgb(48, 240, 176);
   }
 `;
 
@@ -190,9 +191,7 @@ export default function Header() {
               placeholder="AAPL, TSLA, FSLY..."
               allowClear
             />
-            <StyledButton onClick={addToWatchlist}>
-              <GoPlus />
-            </StyledButton>
+            <StyledButton onClick={addToWatchlist}>Add to list</StyledButton>
           </HeaderSection>
         </HeaderContentContainer>
       </DesktopOnly>

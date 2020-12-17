@@ -4,7 +4,6 @@ import AppContext from '../../AppContext';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { message } from 'antd';
 import config from '../../config';
-import Loader from '../common/Loader/Loader';
 
 const WatchListContainer = styled.div`
   padding: 10px;

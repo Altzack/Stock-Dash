@@ -111,7 +111,7 @@ const StyledButton = styled.button`
   color: #fff;
   font-weight: 500;
   height: 33px;
-
+  outline: none;
   background-color: rgb(40, 199, 145);
   width: 120px;
   margin-left: 10px;
@@ -122,7 +122,7 @@ const StyledButton = styled.button`
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
   :hover {
     transition: all 0.1s ease-in-out;
-    background-color: #3e9afc;
+    background-color: rgb(48, 240, 176);
     cursor: pointer;
   }
 `;

@@ -17,7 +17,6 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import config from './config';
 import About from './containers/About/About';
 import { message } from 'antd';
-import NewsPage from './containers/NewsPage/NewsPage';
 
 const AppContainer = styled.div`
   display: flex;

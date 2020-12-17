@@ -74,6 +74,7 @@ const StyledButton = styled.button`
   height: 34px;
   background-color: rgb(40, 199, 145);
   width: 55px;
+  outline: none;
   transition: all 0.1s ease-in-out;
   border: 1px solid rgba(0, 0, 0, 0.21);
   border-bottom: 4px solid rgba(0, 0, 0, 0.21);
@@ -81,7 +82,7 @@ const StyledButton = styled.button`
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
   :hover {
     transition: all 0.1s ease-in-out;
-    background-color: #3e9afc;
+    background-color: rgb(48, 240, 176);
     cursor: pointer;
   }
   @media (max-width: 650px) {
@@ -133,9 +134,11 @@ export default function WatchList() {
             <Loader />
           </div>
         ) : (
-          <WatchListContainer />
+          <>
+            <WatchListContainer />
+            <SubTitle>click symbol to get news</SubTitle>
+          </>
         )}
-        <SubTitle>click symbol to get news</SubTitle>
       </WatchListDiv>
     </PageContainer>
   );
