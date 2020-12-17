@@ -5,6 +5,7 @@ const GraphContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 200px;
+  color: #fff;
   display: flex;
   background-color: #333;
   margin-bottom: 30px;
@@ -41,7 +42,7 @@ const PageContainer = styled.div`
 export default function Graph() {
   return (
     <PageContainer>
-      <GraphContainer></GraphContainer>
+      <GraphContainer>graph</GraphContainer>
     </PageContainer>
   );
 }
