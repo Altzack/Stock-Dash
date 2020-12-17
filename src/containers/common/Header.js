@@ -51,7 +51,7 @@ const StyledButton = styled.button`
     cursor: pointer;
   }
   @media (min-width: 1025px) {
-    width: 100px;
+    width: 110px;
   }
 `;
 
@@ -137,7 +137,7 @@ export default function Header() {
     context.watchList.length >= 5 ||
     context.watchList.some(found) === true ||
     !symbol.includes('|')
-      ? message.error('Symbol already in watch list or nothing selected')
+      ? message.error('Symbol already in list, nothing selected, or list full')
       : fetch(`${config.API_ENDPOINT}/watchlist`, {
           method: 'POST',
           body: JSON.stringify(getSymbol),
@@ -191,7 +191,7 @@ export default function Header() {
               placeholder="AAPL, TSLA, FSLY..."
               allowClear
             />
-            <StyledButton onClick={addToWatchlist}>Add to list</StyledButton>
+            <StyledButton onClick={addToWatchlist}>Add to top 5</StyledButton>
           </HeaderSection>
         </HeaderContentContainer>
       </DesktopOnly>
