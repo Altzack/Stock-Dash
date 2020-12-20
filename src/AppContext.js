@@ -17,6 +17,9 @@ const AppContext = React.createContext({
   closePrice: [],
   setClosePrice: () => {},
   getClosePrice: () => {},
+  graphTicker: '',
+  graphData: [],
+  setGraphTicker: () => {},
 });
 
 export default AppContext;

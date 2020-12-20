@@ -21,12 +21,18 @@
     width: 100px;
     margin-left: 65px;
   }
+  .lineGraph {
+    width: 300px;
+  }
 }
 
 @media (min-width: 340px) {
   .logoImg {
     width: 100px;
     margin-left: 73px;
+  }
+  .lineGraph {
+    width: 360px;
   }
 }
 
@@ -41,6 +47,15 @@
   .logoImg {
     width: 130px;
     margin-left: 150px;
+  }
+  .lineGraph {
+    width: 550px;
+  }
+}
+
+@media (min-width: 900px) {
+  .lineGraph {
+    width: 810px;
   }
 }
 

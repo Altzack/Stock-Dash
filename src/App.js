@@ -54,6 +54,8 @@ class App extends Component {
       closePrice: [],
       watchList: [],
       editing: false,
+      graphTicker: '',
+      graphData: [],
     };
   }
 
@@ -112,12 +114,20 @@ class App extends Component {
     });
   };
 
+  setGraphTicker = (symbol) => {
+    this.setState({
+      graphTicker: symbol,
+    });
+  };
+
   handleSelect = (selectedTicker) => {
     const tickerArr = selectedTicker.split('|');
-    const filteredSecurityName = tickerArr[0].trim();
-
+    const filteredSymbol = tickerArr[0].trim();
+    const filteredSecurityName = tickerArr[1].trim();
+    const regexFilteredTicker = filteredSecurityName.replace(/[,.]/g, '');
+    const filterSpacesTicker = regexFilteredTicker.replace(/  +/g, ' ');
     fetch(
-      `${config.NEWS_API_ENDPOINT}/search?q=${filteredSecurityName}&lang=en&sortby=publishedAt&country=us&token=${config.NEWS_API_KEY}`,
+      `${config.NEWS_API_ENDPOINT}/search?q=${filterSpacesTicker}&lang=en&sortby=publishedAt&country=us&token=${config.NEWS_API_KEY}`,
       {
         method: 'GET',
         headers: {},
@@ -130,6 +140,11 @@ class App extends Component {
         return res.json();
       })
       .then(this.setNews)
+      .then(
+        this.setState({
+          graphTicker: filteredSymbol,
+        })
+      )
       .then(console.log(filteredSecurityName))
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
@@ -221,6 +236,9 @@ class App extends Component {
       getWatchlist: this.getWatchlist,
       setClosePrice: this.setClosePrice,
       getClosePrice: this.getClosePrice,
+      graphTicker: this.state.graphTicker,
+      graphData: this.state.graphData,
+      setGraphTicker: this.setGraphTicker,
     };
     return (
       <AppContext.Provider value={contextValues}>

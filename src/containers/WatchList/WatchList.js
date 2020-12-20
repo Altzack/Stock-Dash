@@ -93,7 +93,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledTitle = styled.div`
+const StyledTitle = styled.h1`
   color: #e8e6e3;
   font-family: Rubik;
   margin-top: 10px;

@@ -23,7 +23,9 @@ const WatchListContainer = styled.div`
   }
 `;
 
-const WatchListItems = styled.div``;
+const WatchListItems = styled.div`
+  text-align: left;
+`;
 
 function WatchListItem() {
   const context = useContext(AppContext);
@@ -46,6 +48,7 @@ function WatchListItem() {
         return res.json();
       })
       .then(context.setNews)
+      .then(context.setGraphTicker(selectedSymbol))
       .then(console.log(selectedSymbol))
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
@@ -79,7 +82,7 @@ function WatchListItem() {
     <>
       {context.watchList.map((symbol) => {
         return (
-          <>
+          <div key={symbol.id} id={symbol.symbol}>
             {context.editing ? (
               <WatchListContainer key={symbol.id} id={symbol.symbol}>
                 <RiDeleteBin2Fill
@@ -106,28 +109,32 @@ function WatchListItem() {
                 {context.closePrice.map((price) => {
                   return price.symbol === symbol.symbol ? (
                     <>
-                      <WatchListItems>
-                        {price.previousClose > price.price ? (
-                          <div style={{ color: 'red' }}>
-                            ${Number(price.price)}
-                          </div>
-                        ) : (
-                          <div style={{ color: 'green' }}>
-                            ${Number(price.price)}
-                          </div>
-                        )}
-                      </WatchListItems>
-                      <WatchListItems>
-                        {price.previousClose > price.price ? (
-                          <div style={{ color: 'red' }}>
-                            {price.change.slice(0, 5)}%
-                          </div>
-                        ) : (
-                          <div style={{ color: 'green' }}>
-                            +{price.change.slice(0, 4)}%
-                          </div>
-                        )}
-                      </WatchListItems>
+                      <div>
+                        <WatchListItems>
+                          {price.previousClose > price.price ? (
+                            <div style={{ color: 'red' }}>
+                              ${Number(price.price)}
+                            </div>
+                          ) : (
+                            <div style={{ color: 'rgb(40, 199, 145)' }}>
+                              ${Number(price.price)}
+                            </div>
+                          )}
+                        </WatchListItems>
+                      </div>
+                      <div>
+                        <WatchListItems>
+                          {price.previousClose > price.price ? (
+                            <div style={{ color: 'red' }}>
+                              {price.change.slice(0, 5)}%
+                            </div>
+                          ) : (
+                            <div style={{ color: 'rgb(40, 199, 145)' }}>
+                              +{price.change.slice(0, 4)}%
+                            </div>
+                          )}
+                        </WatchListItems>
+                      </div>
                     </>
                   ) : (
                     ''
@@ -135,7 +142,7 @@ function WatchListItem() {
                 })}
               </WatchListContainer>
             )}
-          </>
+          </div>
         );
       })}
     </>

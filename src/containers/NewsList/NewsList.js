@@ -160,7 +160,12 @@ export default class NewsList extends React.Component {
 
     const list = this.context.news.map((newsObj) => {
       return (
-        <a href={newsObj.url} target="_blank" rel="noopener noreferrer">
+        <a
+          href={newsObj.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          key={newsObj.url}
+        >
           <NewsContainer className="drink">
             <Title>
               <SubTitle>{newsObj.source.name}</SubTitle>
