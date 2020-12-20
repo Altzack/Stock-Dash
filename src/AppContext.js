@@ -20,6 +20,9 @@ const AppContext = React.createContext({
   graphTicker: '',
   graphData: [],
   setGraphTicker: () => {},
+  getGraphData: () => {},
+  setGraphTickerPrice: () => {},
+  graphTickerPrice: {},
 });
 
 export default AppContext;

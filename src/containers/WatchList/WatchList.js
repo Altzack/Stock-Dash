@@ -10,6 +10,7 @@ const WatchListDiv = styled.div`
   padding: 15px;
   position: fixed;
   margin-bottom: 10px;
+  margin-top: 10px;
   border: 1px solid #fff;
   background-color: rgb(27, 29, 30);
   scrollbar-width: none;

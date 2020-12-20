@@ -56,6 +56,7 @@ class App extends Component {
       editing: false,
       graphTicker: '',
       graphData: [],
+      graphTickerPrice: {},
     };
   }
 
@@ -120,6 +121,42 @@ class App extends Component {
     });
   };
 
+  setGraphTickerPrice = (price) => {
+    this.setState({
+      graphTickerPrice: price['Global Quote'],
+    });
+    console.log(this.state.graphTickerPrice);
+  };
+
+  setGraphData = (data) => {
+    this.setState({
+      graphData: data['Time Series (60min)'],
+    });
+  };
+
+  getGraphData = (selectedTicker) => {
+    const tickerArr = selectedTicker.split('|');
+    const filteredSymbol = tickerArr[0].trim();
+    fetch(
+      `${config.GRAPH_DATA_API_ENDPOINT}&symbol=${filteredSymbol}&interval=60min&apikey=${config.DATA_API_KEY}`,
+      {
+        method: 'GET',
+        headers: {},
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(this.setGraphData)
+      .then(console.log(filteredSymbol))
+      .catch((err) => {
+        message.error(`Please try again later: ${err}`);
+      });
+  };
+
   handleSelect = (selectedTicker) => {
     const tickerArr = selectedTicker.split('|');
     const filteredSymbol = tickerArr[0].trim();
@@ -145,7 +182,26 @@ class App extends Component {
           graphTicker: filteredSymbol,
         })
       )
+      .then(this.getGraphData(selectedTicker))
       .then(console.log(filteredSecurityName))
+      .catch((err) => {
+        message.error(`Please try again later: ${err}`);
+      });
+
+    fetch(
+      `${config.DATA_API_ENDPOINT}&symbol=${filteredSymbol}&apikey=${config.DATA_API_KEY}`,
+      {
+        method: 'GET',
+        headers: {},
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(this.setGraphTickerPrice)
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });
@@ -239,6 +295,9 @@ class App extends Component {
       graphTicker: this.state.graphTicker,
       graphData: this.state.graphData,
       setGraphTicker: this.setGraphTicker,
+      getGraphData: this.getGraphData,
+      setGraphTickerPrice: this.setGraphTickerPrice,
+      graphTickerPrice: this.state.graphTickerPrice || {},
     };
     return (
       <AppContext.Provider value={contextValues}>

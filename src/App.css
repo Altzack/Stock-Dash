@@ -24,6 +24,9 @@
   .lineGraph {
     width: 300px;
   }
+  .graphDiv {
+    width: 85%;
+  }
 }
 
 @media (min-width: 340px) {
@@ -51,6 +54,9 @@
   .lineGraph {
     width: 550px;
   }
+  .graphDiv {
+    width: 70%;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -72,12 +78,18 @@
     width: 130px;
     margin-left: 200px;
   }
+  .graphDiv {
+    width: 70%;
+  }
 }
 
 @media (min-width: 1030px) {
   .logoImg {
     width: 140px;
     margin-left: 0px;
+  }
+  .graphDiv {
+    width: 42%;
   }
 }
 

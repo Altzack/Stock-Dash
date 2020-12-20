@@ -30,6 +30,12 @@ const WatchListItems = styled.div`
 function WatchListItem() {
   const context = useContext(AppContext);
 
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+
   const listOnSelect = (e) => {
     e.preventDefault();
     const selectedSymbol = e.currentTarget.id;
@@ -49,7 +55,26 @@ function WatchListItem() {
       })
       .then(context.setNews)
       .then(context.setGraphTicker(selectedSymbol))
+      .then(context.getGraphData(selectedSymbol))
       .then(console.log(selectedSymbol))
+      .catch((err) => {
+        message.error(`Please try again later: ${err}`);
+      });
+
+    fetch(
+      `${config.DATA_API_ENDPOINT}&symbol=${selectedSymbol}&apikey=${config.DATA_API_KEY}`,
+      {
+        method: 'GET',
+        headers: {},
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(context.setGraphTickerPrice)
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });
@@ -113,11 +138,11 @@ function WatchListItem() {
                         <WatchListItems>
                           {price.previousClose > price.price ? (
                             <div style={{ color: 'red' }}>
-                              ${Number(price.price)}
+                              {formatter.format(price.price)}
                             </div>
                           ) : (
                             <div style={{ color: 'rgb(40, 199, 145)' }}>
-                              ${Number(price.price)}
+                              {formatter.format(price.price)}
                             </div>
                           )}
                         </WatchListItems>

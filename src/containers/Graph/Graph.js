@@ -12,7 +12,7 @@ const PageContainer = styled.div`
   flex-direction: column;
   margin-bottom: 30px;
   @media (min-width: 300px) {
-    height: 250px;
+    height: 275px;
   }
   @media (min-width: 350px) {
     height: 300px;
@@ -22,26 +22,31 @@ const PageContainer = styled.div`
   }
 `;
 
-const GraphTitle = styled.div`
-  padding: 10px;
+const GraphTitle = styled.h1`
   color: #e8e6e3;
-
+  margin-left: 20px;
   @media (min-width: 300px) {
-    width: 320px;
     font-size: 20px;
   }
+  @media (min-width: 400px) {
+  }
   @media (min-width: 600px) {
-    width: 550px;
     font-size: 25px;
+    margin-left: 20px;
   }
   @media (min-width: 900px) {
     font-size: 27px;
-    width: 800px;
   }
 `;
 
 export default function Graph() {
   const context = useContext(AppContext);
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
 
   const data = [
     { year: '1991', price: 3 },
@@ -71,13 +76,30 @@ export default function Graph() {
 
   return (
     <PageContainer>
-      <GraphTitle>
-        {context.graphTicker.length !== 0 ? (
-          context.graphTicker
-        ) : (
-          <GraphTitle>AAPL</GraphTitle>
-        )}
-      </GraphTitle>
+      <div
+        className="graphDiv"
+        style={{
+          display: 'flex',
+          justifyContent: 'left',
+          marginTop: 10,
+        }}
+      >
+        <GraphTitle>
+          {context.graphTicker ? context.graphTicker : ''}
+        </GraphTitle>
+        <GraphTitle>
+          {context.graphTickerPrice['08. previous close'] >
+          context.graphTickerPrice['05. price'] ? (
+            <div style={{ color: 'red' }}>
+              {formatter.format(context.graphTickerPrice['05. price'])}
+            </div>
+          ) : (
+            <div style={{ color: 'rgb(40, 199, 145)' }}>
+              {formatter.format(context.graphTickerPrice['05. price'])}
+            </div>
+          )}
+        </GraphTitle>
+      </div>
       <Line className="lineGraph" {...config} />
     </PageContainer>
   );
