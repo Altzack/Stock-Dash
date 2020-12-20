@@ -12,10 +12,10 @@ const PageContainer = styled.div`
   flex-direction: column;
   margin-bottom: 30px;
   @media (min-width: 300px) {
-    height: 200px;
+    height: 250px;
   }
   @media (min-width: 350px) {
-    height: 250px;
+    height: 300px;
   }
   @media (min-width: 600px) {
     height: 350px;
