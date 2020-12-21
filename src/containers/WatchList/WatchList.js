@@ -44,7 +44,7 @@ const WatchListDiv = styled.div`
     width: 323px;
     position: fixed;
     margin-left: 110px;
-    height: calc(100% - 550px);
+    height: calc(100% - 570px);
   }
 `;
 
@@ -56,13 +56,13 @@ const SubTitle = styled.div`
   margin-top: 5px;
   font-size: 10px;
   @media (min-width: 300px) {
-    font-size: 8px;
+    font-size: 10px;
   }
   @media (min-width: 600px) {
-    font-size: 8px;
+    font-size: 12px;
   }
   @media (min-width: 900px) {
-    font-size: 8px;
+    font-size: 13px;
   }
 `;
 
@@ -76,27 +76,30 @@ const PageContainer = styled.div`
   }
 `;
 const StyledButton = styled.button`
-  color: #fff;
-  font-weight: 500;
-  height: 34px;
-  background-color: rgb(40, 199, 145);
-  width: 55px;
+  background: none;
+  font-size: 14px;
+  width: 80px;
+  padding-left: 10px;
+  padding-right: 10px;
   outline: none;
-  transition: all 0.1s ease-in-out;
-  border: 1px solid rgba(0, 0, 0, 0.21);
-  border-bottom: 4px solid rgba(0, 0, 0, 0.21);
-  border-radius: 4px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  font-weight: 400;
+  height: 32px;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  border: 1px solid rgb(40, 199, 145);
+  color: rgb(40, 199, 145);
   :hover {
     transition: all 0.1s ease-in-out;
     background-color: rgb(48, 240, 176);
+    color: #000;
     cursor: pointer;
   }
   @media (max-width: 650px) {
-    margin-top: 5px;
+    margin-top: 10px;
   }
   @media (min-width: 655px) {
-    margin-top: 10px;
+    margin-top: 13px;
   }
 `;
 
@@ -129,7 +132,7 @@ export default function WatchList() {
             marginBottom: 10,
           }}
         >
-          <StyledTitle>Your top five</StyledTitle>
+          <StyledTitle>Your top 5</StyledTitle>
           {context.editing ? (
             <StyledButton onClick={context.editingOff}>Done</StyledButton>
           ) : (
@@ -143,7 +146,11 @@ export default function WatchList() {
         ) : (
           <>
             <WatchListContainer />
-            <SubTitle>click symbol to get news</SubTitle>
+            {context.editing ? (
+              ''
+            ) : (
+              <SubTitle>click symbol to get news/data</SubTitle>
+            )}
           </>
         )}
       </WatchListDiv>

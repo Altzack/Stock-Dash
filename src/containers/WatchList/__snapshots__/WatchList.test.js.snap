@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Watchlist by default 1`] = `
+<WatchList__PageContainer>
+  <WatchList__WatchListDiv>
+    <div
+      style={
+        Object {
+          "borderBottom": "1px solid #fff",
+          "display": "flex",
+          "height": 60,
+          "justifyContent": "space-between",
+          "marginBottom": 10,
+        }
+      }
+    >
+      <WatchList__StyledTitle>
+        Your top 5
+      </WatchList__StyledTitle>
+      <WatchList__StyledButton
+        onClick={[Function]}
+      >
+        Edit
+      </WatchList__StyledButton>
+    </div>
+    <div
+      style={
+        Object {
+          "marginTop": 150,
+        }
+      }
+    >
+      <Loader />
+    </div>
+  </WatchList__WatchListDiv>
+</WatchList__PageContainer>
+`;

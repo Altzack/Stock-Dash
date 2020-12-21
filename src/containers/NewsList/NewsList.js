@@ -34,6 +34,7 @@ const PageContainer = styled.div`
   justify-content: space-evenly;
   width: 100%;
   flex-direction: column;
+  margin-top: 15px;
   flex-wrap: wrap;
   background-color: rgb(27, 29, 30);
 `;
@@ -108,21 +109,25 @@ const NewsImg = styled.img`
 `;
 
 const StyledButton = styled.button`
-  color: #fff;
-  font-weight: 500;
-  height: 33px;
+  background: none;
+  padding: 5px;
+  font-size: 14px;
+  min-width: 120px;
+  max-width: 360px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 400;
   outline: none;
-  background-color: rgb(40, 199, 145);
-  width: 120px;
   margin-left: 10px;
-  transition: all 0.1s ease-in-out;
-  border: 1px solid rgba(0, 0, 0, 0.21);
-  border-bottom: 4px solid rgba(0, 0, 0, 0.21);
-  border-radius: 4px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  border: 1px solid rgb(40, 199, 145);
+  color: rgb(40, 199, 145);
   :hover {
     transition: all 0.1s ease-in-out;
     background-color: rgb(48, 240, 176);
+    color: #000;
     cursor: pointer;
   }
 `;

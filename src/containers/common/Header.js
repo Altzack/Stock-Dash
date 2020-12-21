@@ -7,7 +7,6 @@ import { MenuOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../../App.css';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { GoPlus } from 'react-icons/go';
 import config from '../../config';
 import AppContext from '../../AppContext';
 import symbols from '../../symbols';
@@ -16,42 +15,37 @@ import { message } from 'antd';
 const AppHeaderContainer = styled.div`
   padding: 8px 12px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   min-height: 60px;
   position: fixed;
   width: 100vw;
   font-family: Rubik;
   z-index: 99;
-  background-color: rgb(27, 28, 29);
-`;
-
-const FooterSeparator = styled.span`
-  padding: 0 10px;
-  margin-top: 2px;
+  background-color: rgb(27, 29, 30);
 `;
 
 const StyledButton = styled.button`
-  color: #fff;
-  font-weight: 500;
-  height: 33px;
-  line-height: 32px;
-  background-color: rgb(40, 199, 145);
-  width: 40px;
-  font-size: 15px;
+  background: none;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  max-width: 360px;
+  padding-left: 10px;
+  padding-right: 10px;
   outline: none;
   margin-left: 10px;
-  transition: all 0.1s ease-in-out;
-  border: 1px solid rgba(0, 0, 0, 0.21);
-  border-bottom: 4px solid rgba(0, 0, 0, 0.21);
-  border-radius: 4px;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  border: 1px solid rgb(40, 199, 145);
+  color: rgb(40, 199, 145);
   :hover {
     transition: all 0.1s ease-in-out;
     background-color: rgb(48, 240, 176);
+    color: #000;
     cursor: pointer;
   }
-  @media (min-width: 1025px) {
-    width: 110px;
+  @media (max-width: 1025px) {
+    width: 50px;
   }
 `;
 
@@ -59,7 +53,6 @@ const HeaderSection = styled.div`
   display: flex;
   align-items: center;
   width: 33%;
-  color: #e8e6e3;
 `;
 
 const HeaderContentContainer = styled.div`
@@ -76,6 +69,7 @@ const HeaderContentContainer = styled.div`
 const StyledHeader = styled.h3`
   color: #e8e6e3;
   margin-bottom: 0;
+  padding: 10px;
   :hover {
     color: rgb(48, 240, 176);
   }
@@ -168,7 +162,6 @@ export default function Header() {
             <Link style={{ textDecoration: 'none', color: '#000' }} to="/">
               <StyledHeader>Home</StyledHeader>
             </Link>
-            <FooterSeparator>|</FooterSeparator>
             <Link style={{ textDecoration: 'none', color: '#000' }} to="/about">
               <StyledHeader>About</StyledHeader>
             </Link>
@@ -221,7 +214,7 @@ export default function Header() {
           </HeaderSection>
           <HeaderSection
             className="searchContainer"
-            style={{ justifyContent: 'flex-end', width: '65%' }}
+            style={{ justifyContent: 'flex-end', width: '100%' }}
           >
             {clicked === true ? (
               <>
@@ -236,9 +229,7 @@ export default function Header() {
                   onSearch={handleSearch}
                   placeholder="AAPL, TSLA, FSLY..."
                 />
-                <StyledButton onClick={addToWatchlist}>
-                  <GoPlus />
-                </StyledButton>
+                <StyledButton onClick={addToWatchlist}>Add</StyledButton>
               </>
             ) : (
               <AiOutlineSearch onClick={() => setClicked(true)} />

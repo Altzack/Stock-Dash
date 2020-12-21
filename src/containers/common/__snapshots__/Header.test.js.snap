@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Header by default 1`] = `
+<Header__AppHeaderContainer>
+  <DesktopOnly>
+    <Header__HeaderContentContainer>
+      <Header__HeaderSection
+        style={
+          Object {
+            "justifyContent": "flex-start",
+          }
+        }
+      >
+        <Link
+          style={
+            Object {
+              "color": "#000",
+              "textDecoration": "none",
+            }
+          }
+          to="/"
+        >
+          <Header__StyledHeader>
+            Home
+          </Header__StyledHeader>
+        </Link>
+        <Link
+          style={
+            Object {
+              "color": "#000",
+              "textDecoration": "none",
+            }
+          }
+          to="/about"
+        >
+          <Header__StyledHeader>
+            About
+          </Header__StyledHeader>
+        </Link>
+      </Header__HeaderSection>
+      <Header__HeaderSection
+        style={
+          Object {
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Header__LogoLink
+          to="/"
+        >
+          <img
+            alt="logo"
+            className="logoImg"
+            src="/stockdashlogo.png"
+          />
+        </Header__LogoLink>
+      </Header__HeaderSection>
+      <Header__HeaderSection
+        style={
+          Object {
+            "justifyContent": "flex-end",
+          }
+        }
+      >
+        <ForwardRef(AutoComplete)
+          allowClear={true}
+          dropdownMatchSelectWidth={300}
+          id="autoComplete"
+          onSearch={[Function]}
+          onSelect={[Function]}
+          options={Array []}
+          placeholder="AAPL, TSLA, FSLY..."
+          style={
+            Object {
+              "width": 200,
+            }
+          }
+        />
+        <Header__StyledButton
+          onClick={[Function]}
+        >
+          Add to top 5
+        </Header__StyledButton>
+      </Header__HeaderSection>
+    </Header__HeaderContentContainer>
+  </DesktopOnly>
+  <MobileOnly>
+    <Header__HeaderContentContainer>
+      <Header__HeaderSection
+        style={
+          Object {
+            "justifyContent": "flex-start",
+          }
+        }
+      >
+        <Button
+          block={false}
+          ghost={false}
+          htmlType="button"
+          loading={false}
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "borderColor": "transparent",
+              "color": "#e8e6e3",
+            }
+          }
+          ype="text"
+        >
+          <ForwardRef(MenuOutlined) />
+        </Button>
+      </Header__HeaderSection>
+      <Header__HeaderSection
+        style={
+          Object {
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Header__LogoLink
+          to="/"
+        >
+          <img
+            alt="logo"
+            className="logoImg"
+            src="/stockdashlogo.png"
+          />
+        </Header__LogoLink>
+      </Header__HeaderSection>
+      <Header__HeaderSection
+        className="searchContainer"
+        style={
+          Object {
+            "justifyContent": "flex-end",
+            "width": "100%",
+          }
+        }
+      >
+        <AiOutlineSearch
+          onClick={[Function]}
+        />
+      </Header__HeaderSection>
+    </Header__HeaderContentContainer>
+    <DrawerWrapper
+      closable="true"
+      key="AppHeader-left-drawer"
+      onClose={[Function]}
+      placement="left"
+      visible={false}
+    >
+      <Link
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "#000",
+            "textDecoration": "none",
+          }
+        }
+        to="/"
+      >
+        <h3>
+          Home
+        </h3>
+      </Link>
+      <Link
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "#000",
+            "textDecoration": "none",
+          }
+        }
+        to="/about"
+      >
+        <h3>
+          About
+        </h3>
+      </Link>
+    </DrawerWrapper>
+  </MobileOnly>
+</Header__AppHeaderContainer>
+`;

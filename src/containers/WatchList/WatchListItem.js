@@ -24,7 +24,7 @@ const WatchListContainer = styled.div`
 `;
 
 const WatchListItems = styled.div`
-  text-align: left;
+  text-align: center;
 `;
 
 function WatchListItem() {
@@ -129,14 +129,24 @@ function WatchListItem() {
                 key={symbol.id}
                 id={symbol.symbol}
               >
-                <WatchListItems>{symbol.symbol}</WatchListItems>
+                {/* <WatchListItems>{symbol.symbol}</WatchListItems> */}
                 {context.closePrice.map((price) => {
                   return price.symbol === symbol.symbol ? (
-                    <>
+                    <div
+                      style={{
+                        display: 'flex',
+                        width: '90%',
+                        justifyContent: 'space-around',
+                        alignItems: 'center',
+                      }}
+                      key={symbol.id}
+                    >
+                      <WatchListItems>{symbol.symbol}</WatchListItems>
+
                       <div>
                         <WatchListItems>
                           {price.previousClose > price.price ? (
-                            <div style={{ color: 'red' }}>
+                            <div style={{ color: 'rgb(255,80,0)' }}>
                               {formatter.format(price.price)}
                             </div>
                           ) : (
@@ -149,7 +159,7 @@ function WatchListItem() {
                       <div>
                         <WatchListItems>
                           {price.previousClose > price.price ? (
-                            <div style={{ color: 'red' }}>
+                            <div style={{ color: 'rgb(255,80,0)' }}>
                               {price.change.slice(0, 5)}%
                             </div>
                           ) : (
@@ -159,7 +169,7 @@ function WatchListItem() {
                           )}
                         </WatchListItems>
                       </div>
-                    </>
+                    </div>
                   ) : (
                     ''
                   );

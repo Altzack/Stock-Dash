@@ -97,7 +97,7 @@ class App extends Component {
 
   setWatchlist = (watchList) => {
     this.setState({
-      watchList,
+      watchList: watchList.reverse(),
       error: null,
       loading: false,
     });
@@ -133,9 +133,9 @@ class App extends Component {
     const dateKeys = Object.keys(data['Time Series (Daily)']);
     let graphArray = [];
     let graphObj = {};
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 50; i++) {
       graphObj = {
-        closePrice: parseFloat(timeSeries[dateKeys[i]]['4. close']),
+        price: parseFloat(timeSeries[dateKeys[i]]['4. close']),
         date: moment(dateKeys[i]).format('MM/DD'),
       };
       graphArray.push(graphObj);

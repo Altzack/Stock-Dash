@@ -27,6 +27,11 @@
   .graphDiv {
     width: 85%;
   }
+  .symbolChange {
+    font-size: 13px;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
 }
 
 @media (min-width: 340px) {
@@ -71,25 +76,36 @@
   .lineGraph {
     width: 810px;
   }
+  .symbolChange {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
 }
 
 @media (min-width: 1000px) {
   .logoImg {
-    width: 130px;
+    width: 110px;
     margin-left: 200px;
   }
   .graphDiv {
-    width: 70%;
+    width: 80%;
   }
 }
 
 @media (min-width: 1030px) {
   .logoImg {
-    width: 140px;
+    width: 120px;
     margin-left: 0px;
   }
   .graphDiv {
-    width: 47%;
+    width: 50%;
+  }
+}
+
+@media (min-width: 1700px) {
+  .graphDiv {
+    width: 44%;
   }
 }
 
@@ -100,7 +116,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   max-width: 100%;
-  background-color: rgb(40, 47, 51);
+  background-color: rgb(27, 29, 30);
 
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
