@@ -108,7 +108,7 @@ const StyledTitle = styled.h1`
   font-family: Rubik;
   margin-top: 10px;
   @media (min-width: 300px) {
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 2px;
   }
   @media (min-width: 650px) {

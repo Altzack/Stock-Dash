@@ -214,7 +214,7 @@ export default function Header() {
           </HeaderSection>
           <HeaderSection
             className="searchContainer"
-            style={{ justifyContent: 'flex-end', width: '100%' }}
+            style={{ justifyContent: 'flex-end', width: '60%' }}
           >
             {clicked === true ? (
               <>
