@@ -168,6 +168,26 @@ class App extends Component {
       });
   };
 
+  getGraphTickerPrice = (symbol) => {
+    fetch(
+      `${config.DATA_API_ENDPOINT}&symbol=${symbol}&apikey=${config.DATA_API_KEY}`,
+      {
+        method: 'GET',
+        headers: {},
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(this.setGraphTickerPrice)
+      .catch((err) => {
+        message.error(`Please try again later: ${err}`);
+      });
+  };
+
   handleSelect = (selectedTicker) => {
     const tickerArr = selectedTicker.split('|');
     const filteredSymbol = tickerArr[0].trim();
@@ -194,24 +214,7 @@ class App extends Component {
         })
       )
       .then(this.getGraphData(selectedTicker))
-      .catch((err) => {
-        message.error(`Please try again later: ${err}`);
-      });
-
-    fetch(
-      `${config.DATA_API_ENDPOINT}&symbol=${filteredSymbol}&apikey=${config.DATA_API_KEY}`,
-      {
-        method: 'GET',
-        headers: {},
-      }
-    )
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(this.setGraphTickerPrice)
+      .then(this.getGraphTickerPrice(filteredSymbol))
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });
@@ -274,7 +277,12 @@ class App extends Component {
       })
       .then(this.setWatchlist)
       .then(this.getClosePrice)
-
+      .then(() => {
+        const watchListSymbol = this.state.watchList[0].symbol;
+        this.getGraphData(watchListSymbol);
+        this.setGraphTicker(watchListSymbol);
+        this.getGraphTickerPrice(watchListSymbol);
+      })
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });
