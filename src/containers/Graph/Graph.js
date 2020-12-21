@@ -48,25 +48,13 @@ export default function Graph() {
     minimumFractionDigits: 2,
   });
 
-  const data = [
-    { year: '1991', price: 3 },
-    { year: '1992', price: 4 },
-    { year: '1993', price: 3.5 },
-    { year: '1994', price: 5 },
-    { year: '1993', price: 6 },
-    { year: '1994', price: 8 },
-    { year: '1995', price: 10 },
-    { year: '1996', price: 6 },
-    { year: '1997', price: 8 },
-    { year: '1998', price: 12 },
-    { year: '1999', price: 10 },
-  ];
+  const data = context.graphData;
   const config = {
     data,
     padding: 'auto',
-    xField: 'year',
+    xField: 'date',
     autoFit: 'true',
-    yField: 'price',
+    yField: 'closePrice',
 
     color: 'rgb(40, 199, 145)',
     // point: {

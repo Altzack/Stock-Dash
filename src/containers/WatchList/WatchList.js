@@ -37,8 +37,14 @@ const WatchListDiv = styled.div`
   @media (min-width: 1025px) {
     width: 323px;
     position: fixed;
+    margin-left: 50px;
+    height: calc(100% - 550px);
+  }
+  @media (min-width: 1700px) {
+    width: 323px;
+    position: fixed;
     margin-left: 110px;
-    height: calc(100% - 600px);
+    height: calc(100% - 550px);
   }
 `;
 

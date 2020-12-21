@@ -17,6 +17,7 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import config from './config';
 import About from './containers/About/About';
 import { message } from 'antd';
+import moment from 'moment';
 
 const AppContainer = styled.div`
   display: flex;
@@ -125,12 +126,23 @@ class App extends Component {
     this.setState({
       graphTickerPrice: price['Global Quote'],
     });
-    console.log(this.state.graphTickerPrice);
   };
 
   setGraphData = (data) => {
+    const timeSeries = data['Time Series (Daily)'];
+    const dateKeys = Object.keys(data['Time Series (Daily)']);
+    let graphArray = [];
+    let graphObj = {};
+    for (let i = 0; i < 40; i++) {
+      graphObj = {
+        closePrice: parseFloat(timeSeries[dateKeys[i]]['4. close']),
+        date: moment(dateKeys[i]).format('MM/DD'),
+      };
+      graphArray.push(graphObj);
+    }
+
     this.setState({
-      graphData: data['Time Series (60min)'],
+      graphData: graphArray.reverse(),
     });
   };
 
@@ -138,7 +150,7 @@ class App extends Component {
     const tickerArr = selectedTicker.split('|');
     const filteredSymbol = tickerArr[0].trim();
     fetch(
-      `${config.GRAPH_DATA_API_ENDPOINT}&symbol=${filteredSymbol}&interval=60min&apikey=${config.DATA_API_KEY}`,
+      `${config.GRAPH_DATA_API_ENDPOINT}&symbol=${filteredSymbol}&apikey=${config.DATA_API_KEY}`,
       {
         method: 'GET',
         headers: {},
@@ -151,7 +163,6 @@ class App extends Component {
         return res.json();
       })
       .then(this.setGraphData)
-      .then(console.log(filteredSymbol))
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });
@@ -183,7 +194,6 @@ class App extends Component {
         })
       )
       .then(this.getGraphData(selectedTicker))
-      .then(console.log(filteredSecurityName))
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });

@@ -31,7 +31,7 @@ export default function Footer() {
   return (
     <FooterContainer>
       <FooterContentContainer mobile={isTabletOrMobile}>
-        <div>
+        <div style={{ color: 'rgb(27, 29, 30)', fontWeight: 500 }}>
           Stock Dash
           <FooterSeparator>|</FooterSeparator>
           Created by <i>Zack 2020</i>
@@ -40,16 +40,22 @@ export default function Footer() {
           <br />
         </MobileOnly>
         <div>
-          <a style={{ color: '#fff' }} href="https://github.com/Altzack">
+          <a
+            style={{ color: 'rgb(27, 29, 30)' }}
+            href="https://github.com/Altzack"
+          >
             <FaGithub size="25px" style={{ marginRight: 15 }} />
           </a>
           <a
-            style={{ color: '#fff' }}
+            style={{ color: 'rgb(27, 29, 30)' }}
             href="https://www.linkedin.com/in/zack-altschuler"
           >
             <FaLinkedin size="25px" style={{ marginRight: 15 }} />
           </a>
-          <a style={{ color: '#fff' }} href="mailto:altschulerzack@yahoo.com">
+          <a
+            style={{ color: 'rgb(27, 29, 30)' }}
+            href="mailto:altschulerzack@yahoo.com"
+          >
             <FaTelegramPlane size="25px" style={{ marginRight: 15 }} />
           </a>
         </div>

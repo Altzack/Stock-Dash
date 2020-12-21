@@ -56,7 +56,6 @@ function WatchListItem() {
       .then(context.setNews)
       .then(context.setGraphTicker(selectedSymbol))
       .then(context.getGraphData(selectedSymbol))
-      .then(console.log(selectedSymbol))
       .catch((err) => {
         message.error(`Please try again later: ${err}`);
       });
