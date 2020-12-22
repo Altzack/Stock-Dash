@@ -77,9 +77,15 @@ const StyledHeader = styled.h3`
 
 const LogoLink = styled(Link)`
   align-self: center;
-  color: #e8e6e3;
+  color: rgb(40, 199, 145);
   display: flex;
   font-size: 15px;
+  @media (min-width: 350px) {
+    font-size: 20px;
+  }
+  @media (min-width: 600px) {
+    font-size: 25px;
+  }
 `;
 
 export default function Header() {
@@ -167,9 +173,7 @@ export default function Header() {
             </Link>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'center' }}>
-            <LogoLink to="/">
-              <img alt="logo" src="/stockdashlogo.png" className="logoImg" />
-            </LogoLink>
+            <LogoLink to="/">Stock-Dash</LogoLink>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'flex-end' }}>
             <label htmlFor="autoComplete">Symbol: </label>
@@ -206,13 +210,7 @@ export default function Header() {
             </Button>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'center' }}>
-            <LogoLink to="/">
-              {clicked ? (
-                ''
-              ) : (
-                <img alt="logo" src="/stockdashlogo.png" className="logoImg" />
-              )}
-            </LogoLink>
+            <LogoLink to="/">{clicked ? '' : 'Stock-Dash'}</LogoLink>
           </HeaderSection>
           {clicked === true ? (
             <HeaderSection

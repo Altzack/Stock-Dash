@@ -60,13 +60,13 @@ export default function LandingPage() {
   const { isTabletOrMobile } = useResponsive();
   return (
     <PageContainer mobile={isTabletOrMobile}>
-      <Title>About Stock-dash</Title>
+      <Title>About Stock-Dash</Title>
       <br />
       <ContentContainer>
-        Stock-dash was built as my second full stack capstone for Bloc.
+        Stock-Dash was built as my second full stack capstone for Bloc.
         <br />
         <br />
-        The idea for Stock-dash came from my interest in trading stocks. The
+        The idea for Stock-Dash came from my interest in trading stocks. The
         dashboard allows you to get the latest news and pricing for a symbol, as
         well as see the past month's price data visualized. With the watchlist
         feature you can easily navigate to your top 5 and keep an eye on your
