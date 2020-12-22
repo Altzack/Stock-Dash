@@ -111,7 +111,7 @@ export default function Header() {
         symbol.symbol.toLowerCase().includes(searchText.toLowerCase()) ||
         symbol['Security Name'].toLowerCase().includes(searchText.toLowerCase()) // TODO: Update this so it's smarter or something
     );
-
+    // setting auto complete options
     setOptions(
       filteredTickers.map((ticker) => {
         return {
@@ -123,6 +123,7 @@ export default function Header() {
       })
     );
   };
+
   const addToWatchlist = (e) => {
     e.preventDefault();
 
@@ -136,6 +137,7 @@ export default function Header() {
     };
     const found = (arr) => arr.symbol === filteredTicker;
 
+    // watchlist validation
     filteredTicker.length === 0 ||
     context.watchList.length >= 5 ||
     context.watchList.some(found) === true ||

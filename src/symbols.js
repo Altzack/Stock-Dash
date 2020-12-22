@@ -1,3 +1,4 @@
+// symbols list for auto complete
 const symbols = [
   {
     symbol: 'A',

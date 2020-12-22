@@ -50,6 +50,7 @@ export default function Graph() {
     minimumFractionDigits: 2,
   });
 
+  // graph config
   const data = context.graphData;
   const config = {
     data,
