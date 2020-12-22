@@ -7,7 +7,7 @@ import Loader from '../common/Loader/Loader';
 const WatchListDiv = styled.div`
   height: calc(100% - 200px);
   overflow-y: auto;
-  padding: 15px;
+  padding: 2px;
   position: fixed;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -84,6 +84,8 @@ const StyledButton = styled.button`
   outline: none;
   font-weight: 400;
   height: 32px;
+  margin-top: 15px;
+  margin-right: 10px;
   align-items: center;
   display: inline-flex;
   justify-content: center;
@@ -95,25 +97,25 @@ const StyledButton = styled.button`
     color: #000;
     cursor: pointer;
   }
-  @media (max-width: 650px) {
-    margin-top: 10px;
-  }
   @media (min-width: 655px) {
     margin-top: 13px;
+    margin-right: 10px;
   }
 `;
 
 const StyledTitle = styled.h1`
   color: #e8e6e3;
   font-family: Rubik;
-  margin-top: 10px;
   @media (min-width: 300px) {
     font-size: 18px;
     letter-spacing: 2px;
+    display: flex;
+    align-items: flex-end;
+    margin-left: 13px;
   }
   @media (min-width: 650px) {
-    font-size: 25px;
-    margin-left: 5px;
+    font-size: 20px;
+    margin-left: 10px;
   }
 `;
 
@@ -130,6 +132,7 @@ export default function WatchList() {
             height: 60,
             borderBottom: '1px solid #fff',
             marginBottom: 10,
+            width: '100%',
           }}
         >
           <StyledTitle>Your top 5</StyledTitle>

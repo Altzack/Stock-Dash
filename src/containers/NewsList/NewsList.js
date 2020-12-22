@@ -181,7 +181,7 @@ export default class NewsList extends React.Component {
             </Title>
             {newsObj.image ? (
               <div>
-                <NewsImg alt="cover" src={newsObj.image} />
+                <NewsImg alt={newsObj.title} src={newsObj.image} />
               </div>
             ) : (
               <div>

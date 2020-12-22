@@ -11,6 +11,7 @@ exports[`renders a Watchlist by default 1`] = `
           "height": 60,
           "justifyContent": "space-between",
           "marginBottom": 10,
+          "width": "100%",
         }
       }
     >

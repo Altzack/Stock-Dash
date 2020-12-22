@@ -65,7 +65,6 @@ class App extends Component {
     this.setState({
       news: news.articles,
       error: null,
-      loading: false,
     });
   };
 
@@ -79,7 +78,6 @@ class App extends Component {
 
     this.setState({
       closePrice: [newPrices, ...this.state.closePrice],
-      loading: false,
     });
   };
 
@@ -99,7 +97,6 @@ class App extends Component {
     this.setState({
       watchList: watchList.reverse(),
       error: null,
-      loading: false,
     });
   };
 
@@ -143,6 +140,7 @@ class App extends Component {
 
     this.setState({
       graphData: graphArray.reverse(),
+      loading: false,
     });
   };
 

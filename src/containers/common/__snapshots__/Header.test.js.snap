@@ -62,6 +62,11 @@ exports[`renders a Header by default 1`] = `
           }
         }
       >
+        <label
+          htmlFor="autoComplete"
+        >
+          Symbol: 
+        </label>
         <ForwardRef(AutoComplete)
           allowClear={true}
           dropdownMatchSelectWidth={300}
@@ -72,7 +77,8 @@ exports[`renders a Header by default 1`] = `
           placeholder="AAPL, TSLA, FSLY..."
           style={
             Object {
-              "width": 200,
+              "marginLeft": 10,
+              "width": 170,
             }
           }
         />
@@ -133,7 +139,6 @@ exports[`renders a Header by default 1`] = `
         style={
           Object {
             "justifyContent": "flex-end",
-            "width": "100%",
           }
         }
       >

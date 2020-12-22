@@ -76,9 +76,9 @@ const StyledHeader = styled.h3`
 `;
 
 const LogoLink = styled(Link)`
-  justify-self: center;
   align-self: center;
   color: #e8e6e3;
+  display: flex;
   font-size: 15px;
 `;
 
@@ -172,10 +172,12 @@ export default function Header() {
             </LogoLink>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'flex-end' }}>
+            <label htmlFor="autoComplete">Symbol: </label>
             <AutoComplete
               options={options}
               style={{
-                width: 200,
+                width: 170,
+                marginLeft: 10,
               }}
               id="autoComplete"
               dropdownMatchSelectWidth={300}
@@ -212,29 +214,37 @@ export default function Header() {
               )}
             </LogoLink>
           </HeaderSection>
-          <HeaderSection
-            className="searchContainer"
-            style={{ justifyContent: 'flex-end', width: '60%' }}
-          >
-            {clicked === true ? (
-              <>
-                <AutoComplete
-                  options={options}
-                  style={{
-                    width: 150,
-                  }}
-                  id="autoComplete"
-                  dropdownMatchSelectWidth={250}
-                  onSelect={context.handleSelect}
-                  onSearch={handleSearch}
-                  placeholder="AAPL, TSLA, FSLY..."
-                />
-                <StyledButton onClick={addToWatchlist}>Add</StyledButton>
-              </>
-            ) : (
+          {clicked === true ? (
+            <HeaderSection
+              className="searchContainer"
+              style={{ justifyContent: 'flex-end', width: '80%' }}
+            >
+              <label style={{ fontSize: 12 }} htmlFor="autoComplete">
+                Symbol:{' '}
+              </label>
+              <AutoComplete
+                options={options}
+                style={{
+                  width: 150,
+                  marginLeft: 10,
+                }}
+                id="autoComplete"
+                dropdownMatchSelectWidth={250}
+                onSelect={context.handleSelect}
+                onSearch={handleSearch}
+                placeholder="AAPL, TSLA, FSLY..."
+                allowClear
+              />
+              <StyledButton onClick={addToWatchlist}>Add</StyledButton>
+            </HeaderSection>
+          ) : (
+            <HeaderSection
+              className="searchContainer"
+              style={{ justifyContent: 'flex-end' }}
+            >
               <AiOutlineSearch onClick={() => setClicked(true)} />
-            )}
-          </HeaderSection>
+            </HeaderSection>
+          )}
         </HeaderContentContainer>
         <Drawer
           placement="left"

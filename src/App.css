@@ -19,7 +19,6 @@
 @media (min-width: 300px) {
   .logoImg {
     width: 100px;
-    margin-left: 63px;
   }
   .lineGraph {
     width: 300px;
@@ -37,7 +36,6 @@
 @media (min-width: 340px) {
   .logoImg {
     width: 100px;
-    margin-left: 73px;
   }
   .lineGraph {
     width: 360px;
@@ -47,14 +45,12 @@
 @media (min-width: 400px) {
   .logoImg {
     width: 100px;
-    margin-left: 82px;
   }
 }
 
 @media (min-width: 600px) {
   .logoImg {
     width: 130px;
-    margin-left: 150px;
   }
   .lineGraph {
     width: 550px;
@@ -86,7 +82,6 @@
 @media (min-width: 1000px) {
   .logoImg {
     width: 110px;
-    margin-left: 200px;
   }
   .graphDiv {
     width: 80%;
@@ -96,7 +91,6 @@
 @media (min-width: 1030px) {
   .logoImg {
     width: 120px;
-    margin-left: 0px;
   }
   .graphDiv {
     width: 50%;

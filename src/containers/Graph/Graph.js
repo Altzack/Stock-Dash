@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { Line } from '@ant-design/charts';
 import '../../App.css';
 import AppContext from '../../AppContext';
+import Loader from '../common/Loader/Loader';
 
 const PageContainer = styled.div`
   display: flex;
@@ -68,44 +69,56 @@ export default function Graph() {
 
   return (
     <PageContainer>
-      <div
-        className="graphDiv"
-        style={{
-          justifyContent: 'left',
-          marginTop: 10,
-        }}
-      >
-        <GraphTitle>
-          {context.graphTicker ? context.graphTicker : ''}
-        </GraphTitle>
-        <GraphTitle>
-          {context.graphTickerPrice['08. previous close'] >
-          context.graphTickerPrice['05. price'] ? (
-            <>
-              <div style={{ color: 'rgb(255,80,0)' }}>
-                {formatter.format(context.graphTickerPrice['05. price'])}
-              </div>
-              <div className="symbolChange" style={{ color: 'rgb(255,80,0)' }}>
-                {formatter.format(context.graphTickerPrice['09. change'])} Today
-              </div>
-            </>
-          ) : (
-            <>
-              <div style={{ color: 'rgb(40, 199, 145)' }}>
-                {formatter.format(context.graphTickerPrice['05. price'])}
-              </div>
-              <div
-                className="symbolChange"
-                style={{ color: 'rgb(40, 199, 145)' }}
-              >
-                +{formatter.format(context.graphTickerPrice['09. change'])}{' '}
-                Today
-              </div>
-            </>
-          )}
-        </GraphTitle>
-      </div>
-      <Line className="lineGraph" {...config} />
+      {context.loading ? (
+        <div style={{ marginTop: 150 }}>
+          <Loader />
+        </div>
+      ) : (
+        <>
+          <div
+            className="graphDiv"
+            style={{
+              justifyContent: 'left',
+              marginTop: 10,
+            }}
+          >
+            <GraphTitle>
+              {context.graphTicker ? context.graphTicker : ''}
+            </GraphTitle>
+            <GraphTitle>
+              {context.graphTickerPrice['08. previous close'] >
+              context.graphTickerPrice['05. price'] ? (
+                <>
+                  <div style={{ color: 'rgb(255,80,0)' }}>
+                    {formatter.format(context.graphTickerPrice['05. price'])}
+                  </div>
+                  <div
+                    className="symbolChange"
+                    style={{ color: 'rgb(255,80,0)' }}
+                  >
+                    {formatter.format(context.graphTickerPrice['09. change'])}{' '}
+                    Today
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div style={{ color: 'rgb(40, 199, 145)' }}>
+                    {formatter.format(context.graphTickerPrice['05. price'])}
+                  </div>
+                  <div
+                    className="symbolChange"
+                    style={{ color: 'rgb(40, 199, 145)' }}
+                  >
+                    +{formatter.format(context.graphTickerPrice['09. change'])}{' '}
+                    Today
+                  </div>
+                </>
+              )}
+            </GraphTitle>
+          </div>
+          <Line className="lineGraph" {...config} />
+        </>
+      )}
     </PageContainer>
   );
 }
