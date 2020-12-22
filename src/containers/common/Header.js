@@ -75,9 +75,12 @@ const StyledHeader = styled.h3`
   }
 `;
 
-const LogoLink = styled(Link)`
+const LogoLink = styled.a`
   align-self: center;
   color: rgb(40, 199, 145);
+  :hover {
+    color: rgb(40, 199, 145);
+  }
   display: flex;
   font-size: 15px;
   @media (min-width: 350px) {
