@@ -294,7 +294,7 @@ class App extends Component {
   render() {
     const contextValues = {
       loading: this.state.loading,
-      news: this.state.news,
+      news: this.state.news || [],
       closePrice: this.state.closePrice || [],
       getNews: this.getNews,
       setNews: this.setNews,
