@@ -23,13 +23,3 @@ yarn-debug.log*
 yarn-error.log*
 
 .vercel
-
-**/config
-
-config
-
-src/config
-
-config.js
-
-src/config.js
