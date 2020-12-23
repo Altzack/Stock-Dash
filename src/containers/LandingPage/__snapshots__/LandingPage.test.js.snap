@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a About by default 1`] = `
+exports[`renders a landingpage by default 1`] = `
 <About__PageContainer
   mobile={false}
 >

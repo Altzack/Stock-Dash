@@ -45,17 +45,14 @@ exports[`renders a Header by default 1`] = `
           }
         }
       >
-        <Header__LogoLink
+        <Header__DesktopLogoLink
           to="/"
         >
-          <img
-            alt="logo"
-            className="logoImg"
-            src="/stockdashlogo.png"
-          />
-        </Header__LogoLink>
+          Stock-Dash
+        </Header__DesktopLogoLink>
       </Header__HeaderSection>
       <Header__HeaderSection
+        id="desktopSection"
         style={
           Object {
             "justifyContent": "flex-end",
@@ -82,11 +79,11 @@ exports[`renders a Header by default 1`] = `
             }
           }
         />
-        <Header__StyledButton
+        <Header__StyledDesktopButton
           onClick={[Function]}
         >
           Add to top 5
-        </Header__StyledButton>
+        </Header__StyledDesktopButton>
       </Header__HeaderSection>
     </Header__HeaderContentContainer>
   </DesktopOnly>
@@ -127,11 +124,7 @@ exports[`renders a Header by default 1`] = `
         <Header__LogoLink
           to="/"
         >
-          <img
-            alt="logo"
-            className="logoImg"
-            src="/stockdashlogo.png"
-          />
+          Stock-Dash
         </Header__LogoLink>
       </Header__HeaderSection>
       <Header__HeaderSection

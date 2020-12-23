@@ -96,7 +96,7 @@ const StyledHeader = styled.h3`
   }
 `;
 
-const LogoLink = styled.a`
+const LogoLink = styled(Link)`
   align-self: center;
   color: rgb(40, 199, 145);
   :hover {
@@ -112,7 +112,7 @@ const LogoLink = styled.a`
   }
 `;
 
-const DesktopLogoLink = styled.a`
+const DesktopLogoLink = styled(Link)`
   align-self: center;
   color: rgb(40, 199, 145);
   :hover {
