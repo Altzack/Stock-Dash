@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a graph by default 1`] = `
+<Graph__PageContainer>
+  <div
+    style={
+      Object {
+        "marginTop": 150,
+      }
+    }
+  >
+    <Loader />
+  </div>
+</Graph__PageContainer>
+`;
