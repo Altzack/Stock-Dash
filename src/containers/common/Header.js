@@ -28,6 +28,7 @@ const StyledButton = styled.button`
   padding: 5px;
   font-size: 14px;
   font-weight: 400;
+  width: 50px;
   max-width: 360px;
   padding-left: 10px;
   padding-right: 10px;
@@ -44,8 +45,28 @@ const StyledButton = styled.button`
     color: #000;
     cursor: pointer;
   }
-  @media (max-width: 1025px) {
-    width: 50px;
+`;
+
+const StyledDesktopButton = styled.button`
+  background: none;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  width: 120px;
+  padding-left: 10px;
+  padding-right: 10px;
+  outline: none;
+  margin-left: 10px;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  border: 1px solid rgb(40, 199, 145);
+  color: rgb(40, 199, 145);
+  :hover {
+    transition: all 0.1s ease-in-out;
+    background-color: rgb(48, 240, 176);
+    color: #000;
+    cursor: pointer;
   }
 `;
 
@@ -88,6 +109,25 @@ const LogoLink = styled.a`
   }
   @media (min-width: 600px) {
     font-size: 25px;
+  }
+`;
+
+const DesktopLogoLink = styled.a`
+  align-self: center;
+  color: rgb(40, 199, 145);
+  :hover {
+    color: rgb(40, 199, 145);
+  }
+  display: flex;
+  font-size: 15px;
+  @media (min-width: 350px) {
+    font-size: 20px;
+  }
+  @media (min-width: 600px) {
+    font-size: 25px;
+  }
+  @media (max-width: 1000px) {
+    display: none;
   }
 `;
 
@@ -178,9 +218,12 @@ export default function Header() {
             </Link>
           </HeaderSection>
           <HeaderSection style={{ justifyContent: 'center' }}>
-            <LogoLink to="/">Stock-Dash</LogoLink>
+            <DesktopLogoLink to="/">Stock-Dash</DesktopLogoLink>
           </HeaderSection>
-          <HeaderSection style={{ justifyContent: 'flex-end' }}>
+          <HeaderSection
+            id="desktopSection"
+            style={{ justifyContent: 'flex-end' }}
+          >
             <label htmlFor="autoComplete">Symbol: </label>
             <AutoComplete
               options={options}
@@ -195,7 +238,9 @@ export default function Header() {
               placeholder="AAPL, TSLA, FSLY..."
               allowClear
             />
-            <StyledButton onClick={addToWatchlist}>Add to top 5</StyledButton>
+            <StyledDesktopButton onClick={addToWatchlist}>
+              Add to top 5
+            </StyledDesktopButton>
           </HeaderSection>
         </HeaderContentContainer>
       </DesktopOnly>

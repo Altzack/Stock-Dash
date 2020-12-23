@@ -35,6 +35,10 @@ const WatchListDiv = styled.div`
     height: calc(100% - 100px);
   }
   @media (min-width: 1025px) {
+    width: 800px;
+    height: calc(100% - 100px);
+  }
+  @media (min-width: 1543px) {
     width: 323px;
     position: fixed;
     margin-left: 50px;
@@ -70,7 +74,7 @@ const PageContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  @media (max-width: 1024px) {
+  @media (max-width: 1543px) {
     justify-content: center;
     align-items: center;
   }

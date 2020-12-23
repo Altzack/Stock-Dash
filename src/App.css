@@ -103,6 +103,12 @@
   }
 }
 
+@media (max-width: 1000px) {
+  #desktopSection {
+    width: 70%;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
