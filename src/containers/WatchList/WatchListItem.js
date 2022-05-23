@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components/macro';
-import AppContext from '../../AppContext';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { message } from 'antd';
+import AppContext from '../../AppContext';
 import config from '../../config';
 
 const WatchListContainer = styled.div`
@@ -39,26 +39,8 @@ function WatchListItem() {
   const listOnSelect = (e) => {
     e.preventDefault();
     const selectedSymbol = e.currentTarget.id;
-
-    fetch(
-      `${config.NEWS_API_ENDPOINT}/search?q=${selectedSymbol}&lang=en&sortby=publishedAt&country=us&token=${config.NEWS_API_KEY}`,
-      {
-        method: 'GET',
-        headers: {},
-      }
-    )
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(res.status);
-        }
-        return res.json();
-      })
-      .then(context.setNews)
-      .then(context.setGraphTicker(selectedSymbol))
-      .then(context.getGraphData(selectedSymbol))
-      .catch((err) => {
-        message.error(`Please try again later: ${err}`);
-      });
+    context.setGraphTicker(selectedSymbol);
+    context.getGraphData(selectedSymbol);
 
     fetch(
       `${config.DATA_API_ENDPOINT}&symbol=${selectedSymbol}&apikey=${config.DATA_API_KEY}`,

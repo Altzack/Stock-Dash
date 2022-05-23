@@ -8,6 +8,8 @@ import {
   withRouter,
 } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
+import { message } from 'antd';
+import moment from 'moment';
 import FourOhFour from './containers/common/FourOhFour';
 import { useResponsive } from './containers/common/responsiveComponents';
 import Footer from './containers/common/Footer';
@@ -16,8 +18,6 @@ import AppContext from './AppContext';
 import LandingPage from './containers/LandingPage/LandingPage';
 import config from './config';
 import About from './containers/About/About';
-import { message } from 'antd';
-import moment from 'moment';
 
 const AppContainer = styled.div`
   display: flex;
@@ -69,7 +69,7 @@ class App extends Component {
   };
 
   setClosePrice = (price) => {
-    let newPrices = {
+    const newPrices = {
       price: price['Global Quote']['05. price'],
       symbol: price['Global Quote']['01. symbol'],
       change: price['Global Quote']['10. change percent'],
@@ -107,7 +107,7 @@ class App extends Component {
   };
 
   deleteSymbol = (id) => {
-    let newSymbols = this.state.watchList.filter((d) => d.id !== id);
+    const newSymbols = this.state.watchList.filter((d) => d.id !== id);
     this.setState({
       watchList: newSymbols,
     });
@@ -128,7 +128,7 @@ class App extends Component {
   setGraphData = (data) => {
     const timeSeries = data['Time Series (Daily)'];
     const dateKeys = Object.keys(data['Time Series (Daily)']);
-    let graphArray = [];
+    const graphArray = [];
     let graphObj = {};
     for (let i = 0; i < 50; i++) {
       graphObj = {
@@ -219,7 +219,7 @@ class App extends Component {
   };
 
   getClosePrice = () => {
-    let watchListSymbols = this.state.watchList;
+    const watchListSymbols = this.state.watchList;
     for (let i = 0; i < watchListSymbols.length; i++) {
       const searchSymbols = watchListSymbols[i].symbol;
       fetch(
@@ -287,7 +287,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.getNews();
     this.getWatchlist();
   }
 
@@ -296,7 +295,6 @@ class App extends Component {
       loading: this.state.loading,
       news: this.state.news || [],
       closePrice: this.state.closePrice || [],
-      getNews: this.getNews,
       setNews: this.setNews,
       handleSelect: this.handleSelect,
       watchList: this.state.watchList,
